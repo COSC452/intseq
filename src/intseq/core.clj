@@ -58,9 +58,27 @@
               i2))
           individuals))
 
-(defn select [population]
-  "Returns an indivudal selected from population using lexicase selection."
+(defn tournament-selection [population]
   (best (repeatedly 2 #(rand-nth population))))
+
+(defn lexicase-selection [population test-pairs]
+  (loop [candidates (distinct population)
+         cases (shuffle test-pairs)]
+    (if (or (empty? cases)
+            (empty? (rest candidates)))
+      (rand-nth candidates)
+      (let [min-err-for-case (apply min (map error
+                                             (map :genome candidates)
+                                             (repeat (count candidates) [(first cases)])))]
+        (recur (filter #(= min-err-for-case (error (:genome %) [(first cases)]))
+                       candidates)
+               (rest cases))))))
+
+(defn select [population test-pairs select-type]
+  "Returns an indivudal selected from population using lexicase selection."
+  (case select-type
+    :tournament-selection (tournament-selection population)
+    :lexicase-selection (lexicase-selection population test-pairs)))
 
 (defn mutate [genome]
   "Returns a possibly-mutated copy of genome."
@@ -81,11 +99,11 @@
     (vec (concat (take crossover-point genome1)
                  (drop crossover-point genome2)))))
 
-(defn make-child [population test-pairs]
+(defn make-child [population test-pairs select-type]
   "Returns a new, evaluated child, produced by mutating the result
   of crossing over parents that are selected from the given population."
-  (let [new-genome (mutate (crossover (:genome (select population))
-                                      (:genome (select population))))]
+  (let [new-genome (mutate (crossover (:genome (select population test-pairs select-type))
+                                      (:genome (select population test-pairs select-type))))]
     {:genome new-genome
      :error  (error new-genome test-pairs)}))
 
@@ -103,7 +121,7 @@
                                       (count population)))
               :best-genome  (:genome current-best)})))
 
-(defn gp [population-size generations test-pairs]
+(defn gp [population-size generations test-pairs select-type]
   "Runs genetic programming to find a function that perfectly fits the test-pairs data
   in the context of the given population-size and number of generations to run."
   (loop [population (repeatedly population-size
@@ -114,8 +132,8 @@
             (>= generation generations))
       (best population)
       (recur (repeatedly population-size
-                         #(make-child population test-pairs))
+                         #(make-child population test-pairs select-type))
              (inc generation)))))
 
 
-#_(gp 200 100 (get-seq))
+#_(gp 200 100 (get-seq) :lexicase-selection)

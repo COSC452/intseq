@@ -1,4 +1,5 @@
-(ns intseq.core)
+(ns intseq.core
+  (:require [intseq.ops :as ops]))
 
 (defn get-seq []
   "Retrieves sequence has an OEIS id of seq-id.
@@ -24,23 +25,10 @@
                       (Math/abs (- output (first stack))))
                     (recur (rest program)
                            (case (first program)
-                             + (if (< (count stack) 2)
-                                 stack
-                                 (cons (+ (second stack) (first stack))
-                                       (rest (rest stack))))
-                             - (if (< (count stack) 2)
-                                 stack
-                                 (cons (- (second stack) (first stack))
-                                       (rest (rest stack))))
-                             * (if (< (count stack) 2)
-                                 stack
-                                 (cons (* (second stack) (first stack))
-                                       (rest (rest stack))))
-                             / (if (or (< (count stack) 2)
-                                       (zero? (first stack)))
-                                 stack
-                                 (cons (Math/floorDiv (second stack) (first stack))
-                                       (rest (rest stack))))
+                             + (ops/int-add stack)
+                             - (ops/int-sub stack)
+                             * (ops/int-mult stack)
+                             / (ops/int-div stack)
                              x (cons input stack)
                              (cons (first program) stack)))))))))
 

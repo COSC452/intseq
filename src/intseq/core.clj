@@ -12,25 +12,29 @@
 (def ingredients '(+ - * / x 0 1))
 ;; Specifies ingredients (mathematical operations) to use.
 
+(defn error-loop [genome input output]
+  "Returns the error of the genome for given input output pair."
+  (loop [program genome
+         stack ()]
+    (if (empty? program)
+      (if (empty? stack)
+        1000000
+        (Math/abs (- output (first stack))))
+      (recur (rest program)
+             (case (first program)
+               + (ops/int-add stack)
+               - (ops/int-sub stack)
+               * (ops/int-mult stack)
+               / (ops/int-div stack)
+               x (cons input stack)
+               (cons (first program) stack))))))
+
 (defn error [genome test-pairs]
   "Returns the error of genome in the context of test-pairs."
   (reduce + (for [pair test-pairs]
               (let [input (first pair)
                     output (second pair)]
-                (loop [program genome
-                       stack ()]
-                  (if (empty? program)
-                    (if (empty? stack)
-                      1000000
-                      (Math/abs (- output (first stack))))
-                    (recur (rest program)
-                           (case (first program)
-                             + (ops/int-add stack)
-                             - (ops/int-sub stack)
-                             * (ops/int-mult stack)
-                             / (ops/int-div stack)
-                             x (cons input stack)
-                             (cons (first program) stack)))))))))
+                (error-loop genome input output)))))
 
 (defn new-individual [test-pairs]
   "Returns a new, random individual in the context of test-pairs."
@@ -46,24 +50,31 @@
               i2))
           individuals))
 
-(defn tournament-selection [population]
-  (best (repeatedly 2 #(rand-nth population))))
+(defn add-case-error [candidates test-pair]
+  "Returns genomes with their corresponding case errors."
+  (for [candidate candidates]
+    (let [input (first test-pair)
+          output (second test-pair)]
+      (conj candidate {:case-error (error-loop (:genome candidate) input output)}))))
 
 (defn lexicase-selection [population test-pairs]
+  "Returns an individual from the population using lexicase selection"
   (loop [candidates (distinct population)
          cases (shuffle test-pairs)]
     (if (or (empty? cases)
             (empty? (rest candidates)))
       (rand-nth candidates)
-      (let [min-err-for-case (apply min (map error
-                                             (map :genome candidates)
-                                             (repeat (count candidates) [(first cases)])))]
-        (recur (filter #(= min-err-for-case (error (:genome %) [(first cases)]))
-                       candidates)
+      (let [candidates-w-case-error (add-case-error candidates (first cases))
+            min-error (apply min (map :case-error candidates-w-case-error))]
+        (recur (filter #(= min-error (:case-error %)) candidates-w-case-error)
                (rest cases))))))
 
+(defn tournament-selection [population]
+  "Returns an individual selected from the population using tournament selection."
+  (best (repeatedly 2 #(rand-nth population))))
+
 (defn select [population test-pairs select-type]
-  "Returns an indivudal selected from population using lexicase selection."
+  "Returns an individual selected from population using specified selection method"
   (case select-type
     :tournament-selection (tournament-selection population)
     :lexicase-selection (lexicase-selection population test-pairs)))

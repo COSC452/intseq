@@ -1,5 +1,6 @@
 (ns intseq.core
-  (:require [intseq.ops :as ops]))
+  (:require [intseq.ops :as ops]
+            [clojure.math.numeric-tower :as math]))
 
 (defn get-seq []
   "Retrieves sequence has an OEIS id of seq-id.
@@ -7,9 +8,9 @@
   Note: Retrieval can be done through Mathematica (specified expression or OEIS query)
         or HTTP request."
   (for [x (range 0 10 1)]
-    [x (+ (* x x) x 1)]))
+    [x (+ (math/expt x 2) (* 2 x) 2)]))
 
-(def ingredients '(+ - * / x 0 1))
+(def ingredients '(+ - * / mod expt x 0 1))
 ;; Specifies ingredients (mathematical operations) to use.
 
 (defn error-loop [genome input output]
@@ -19,13 +20,15 @@
     (if (empty? program)
       (if (empty? stack)
         1000000
-        (Math/abs (- output (first stack))))
+        (math/abs (- output (first stack))))
       (recur (rest program)
              (case (first program)
                + (ops/int-add stack)
                - (ops/int-sub stack)
                * (ops/int-mult stack)
                / (ops/int-div stack)
+               mod (ops/int-mod stack)
+               expt (ops/int-expt stack)
                x (cons input stack)
                (cons (first program) stack))))))
 
@@ -51,14 +54,14 @@
           individuals))
 
 (defn add-case-error [candidates test-pair]
-  "Returns genomes with their corresponding case errors."
+  "Returns candidates with their corresponding case errors."
   (for [candidate candidates]
     (let [input (first test-pair)
           output (second test-pair)]
       (conj candidate {:case-error (error-loop (:genome candidate) input output)}))))
 
 (defn lexicase-selection [population test-pairs]
-  "Returns an individual from the population using lexicase selection"
+  "Returns an individual from the population using lexicase selection."
   (loop [candidates (distinct population)
          cases (shuffle test-pairs)]
     (if (or (empty? cases)
@@ -74,7 +77,7 @@
   (best (repeatedly 2 #(rand-nth population))))
 
 (defn select [population test-pairs select-type]
-  "Returns an individual selected from population using specified selection method"
+  "Returns an individual selected from population using specified selection method."
   (case select-type
     :tournament-selection (tournament-selection population)
     :lexicase-selection (lexicase-selection population test-pairs)))

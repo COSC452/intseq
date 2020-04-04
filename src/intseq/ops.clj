@@ -24,7 +24,7 @@
   (if (or (< (count stack) 2)
           (zero? (first stack)))
     stack
-    (cons (/ (second stack) (first stack))
+    (cons (long (/ (second stack) (first stack)))
           (rest (rest stack)))))
 
 (defn mod- [stack]

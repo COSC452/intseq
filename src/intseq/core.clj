@@ -8,10 +8,12 @@
   Note: Retrieval can be done through Mathematica (specified expression or OEIS query)
         or HTTP request."
   (for [x (range 0 10 1)]
-    [x (+ (math/expt x 2) (* 2 x) 2)]))
+    [x (+ (- x 2) (math/abs x) (- x 2))]))
 
-(def ingredients '(+ - * / mod expt x 0 1))
+(def ingredients '(+ - * / mod abs gcd sqrt sin cos tan x 0 1))
 ;; Specifies ingredients (mathematical operations) to use.
+;; Note: not all possible operators are included such as expt, lcm, perm, comb.
+;;        not including them right now, because they make the numbers way too big to compute.
 
 (defn error-loop [genome input output]
   "Returns the error of the genome for given input output pair."
@@ -23,12 +25,21 @@
         (math/abs (- output (first stack))))
       (recur (rest program)
              (case (first program)
-               + (ops/int-add stack)
-               - (ops/int-sub stack)
-               * (ops/int-mult stack)
-               / (ops/int-div stack)
-               mod (ops/int-mod stack)
-               expt (ops/int-expt stack)
+               + (ops/add stack)
+               - (ops/sub stack)
+               * (ops/mult stack)
+               / (ops/div stack)
+               mod (ops/mod- stack)
+               expt (ops/expt stack)
+               abs (ops/abs stack)
+               gcd (ops/gcd stack)
+               lcm (ops/lcm stack)
+               sqrt (ops/sqrt stack)
+               sin (ops/sin stack)
+               cos (ops/cos stack)
+               tan (ops/tan stack)
+               perm (ops/perm stack)
+               comb (ops/comb stack)
                x (cons input stack)
                (cons (first program) stack))))))
 
@@ -138,4 +149,4 @@
              (inc generation)))))
 
 
-#_(gp 200 100 (get-seq) :lexicase-selection)
+#_(gp 400 100 (get-seq) :lexicase-selection)

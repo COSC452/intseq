@@ -8,7 +8,7 @@
   Note: Retrieval can be done through Mathematica (specified expression or OEIS query)
         or HTTP request."
   (for [x (range 0 10 1)]
-    [x (+ (- x 2) (math/abs x) (- x 2))]))
+    [x (+ (* x x) (+ x 6))]))
 
 (def ingredients '(+ - * / mod abs gcd sqrt sin cos tan x 0 1))
 ;; Specifies ingredients (mathematical operations) to use.
@@ -66,10 +66,9 @@
 
 (defn add-case-error [candidates test-pair]
   "Returns candidates with their corresponding case errors."
-  (for [candidate candidates]
-    (let [input (first test-pair)
-          output (second test-pair)]
-      (conj candidate {:case-error (error-loop (:genome candidate) input output)}))))
+  (let [input (first test-pair)
+        output (second test-pair)]
+    (map #(conj % {:case-error (error-loop (:genome %) input output)}) candidates)))
 
 (defn lexicase-selection [population test-pairs]
   "Returns an individual from the population using lexicase selection."

@@ -8,7 +8,7 @@
   Note: Retrieval can be done through Mathematica (specified expression or OEIS query)
         or HTTP request."
   (for [x (range 0 10 1)]
-    [x (+ (* x x) (+ x 6))]))
+    [x (+ (* x x) (+ 2 x) 2)]))
 
 (def ingredients '(+ - * / mod abs gcd sqrt sin cos tan x 0 1))
 ;; Specifies ingredients (mathematical operations) to use.
@@ -111,11 +111,12 @@
     (vec (concat (take crossover-point genome1)
                  (drop crossover-point genome2)))))
 
-(defn make-child [population test-pairs select-type]
+(defn make-child [population test-pairs select-type crossover?]
   "Returns a new, evaluated child, produced by mutating the result
   of crossing over parents that are selected from the given population."
-  (let [new-genome (mutate (crossover (:genome (select population test-pairs select-type))
-                                      (:genome (select population test-pairs select-type))))]
+  (let [new-genome (mutate (if crossover? (crossover (:genome (select population test-pairs select-type))
+                                                      (:genome (select population test-pairs select-type)))
+                                          (:genome (select population test-pairs select-type))))]
     {:genome new-genome
      :error  (error new-genome test-pairs)}))
 
@@ -133,7 +134,7 @@
                                       (count population)))
               :best-genome  (:genome current-best)})))
 
-(defn gp [population-size generations test-pairs select-type]
+(defn gp [population-size generations test-pairs select-type crossover?]
   "Runs genetic programming to find a function that perfectly fits the test-pairs data
   in the context of the given population-size and number of generations to run."
   (loop [population (repeatedly population-size
@@ -144,8 +145,8 @@
             (>= generation generations))
       (best population)
       (recur (repeatedly population-size
-                         #(make-child population test-pairs select-type))
+                         #(make-child population test-pairs select-type crossover?))
              (inc generation)))))
 
 
-#_(gp 400 100 (get-seq) :lexicase-selection)
+#_(gp 200 100 (get-seq) :lexicase-selection true)

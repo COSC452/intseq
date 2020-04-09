@@ -1,16 +1,27 @@
 (ns intseq.core
-  (:require [intseq.ops :as ops]
-            [clojure.math.numeric-tower :as math]))
+                                                         (:require [intseq.ops :as ops]
+                                                                   [clojure.math.numeric-tower :as math]))
 
 (defn get-seq []
   "Retrieves sequence has an OEIS id of seq-id.
   Returns a list of coordinate pairs (test-pairs) in the form of (n, a(n)).
   Note: Retrieval can be done through Mathematica (specified expression or OEIS query)
         or HTTP request."
-  (for [x (range 0 10 1)]
-    [x (+ (* x x) (+ 2 x) 2)]))
+  ; simple test
+  ;(for [x (range 0 10 1)]
+  ;  [x (+ (* x x) (+ 2 x) 2)]))
 
-(def ingredients '(+ - * / mod abs gcd sqrt sin cos tan x 0 1))
+; A037270
+(let [seq [0, 1, 10, 45, 136, 325, 666, 1225, 2080, 3321]
+      index (range (count seq))]
+  (map #(vec [%1 %2]) index seq)))
+
+; A000292
+;(let [seq [0, 1, 4, 10, 20, 35, 56, 84, 120, 165, 220, 286, 364, 455, 560, 680, 816, 969, 1140, 1330, 1540]
+;      index (range (count seq))]
+;  (map #(vec [%1 %2]) index seq)))
+
+(def ingredients '(+ - * / mod abs gcd sqrt sin cos tan x -1 1))
 ;; Specifies ingredients (mathematical operations) to use.
 ;; Note: not all possible operators are included such as expt, lcm, perm, comb.
 ;;        not including them right now, because they make the numbers way too big to compute.
@@ -76,7 +87,7 @@
          cases (shuffle test-pairs)]
     (if (or (empty? cases)
             (empty? (rest candidates)))
-      (rand-nth candidates)
+      (first (sort-by #(count (:genome %)) candidates))
       (let [candidates-w-case-error (add-case-error candidates (first cases))
             min-error (apply min (map :case-error candidates-w-case-error))]
         (recur (filter #(= min-error (:case-error %)) candidates-w-case-error)
@@ -115,7 +126,7 @@
   "Returns a new, evaluated child, produced by mutating the result
   of crossing over parents that are selected from the given population."
   (let [new-genome (mutate (if crossover? (crossover (:genome (select population test-pairs select-type))
-                                                      (:genome (select population test-pairs select-type)))
+                                                     (:genome (select population test-pairs select-type)))
                                           (:genome (select population test-pairs select-type))))]
     {:genome new-genome
      :error  (error new-genome test-pairs)}))
@@ -134,19 +145,25 @@
                                       (count population)))
               :best-genome  (:genome current-best)})))
 
-(defn gp [population-size generations test-pairs select-type crossover?]
+(defn gp [population-size generations test-pairs select-type crossover? elitism?]
   "Runs genetic programming to find a function that perfectly fits the test-pairs data
   in the context of the given population-size and number of generations to run."
   (loop [population (repeatedly population-size
                                 #(new-individual test-pairs))
          generation 0]
     (report generation population)
-    (if (or (= (:error (best population)) 0)
-            (>= generation generations))
-      (best population)
-      (recur (repeatedly population-size
-                         #(make-child population test-pairs select-type crossover?))
-             (inc generation)))))
+    (let [best-individual (best population)]
+      (if (or (= (:error best-individual) 0)
+              (>= generation generations))
+        best-individual
+        (if elitism?
+          (recur (conj (repeatedly (dec population-size)
+                                   #(make-child population test-pairs select-type crossover?))
+                       best-individual)
+                 (inc generation))
+          (recur (repeatedly population-size
+                             #(make-child population test-pairs select-type crossover?))
+                 (inc generation)))))))
 
 
-#_(gp 200 100 (get-seq) :lexicase-selection true)
+#_(gp 1000 200 (get-seq) :lexicase-selection true false)

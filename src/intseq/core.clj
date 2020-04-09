@@ -11,15 +11,17 @@
   ;(for [x (range 0 10 1)]
   ;  [x (+ (* x x) (+ 2 x) 2)]))
 
-; A037270
-(let [seq [0, 1, 10, 45, 136, 325, 666, 1225, 2080, 3321]
-      index (range (count seq))]
-  (map #(vec [%1 %2]) index seq)))
+  ; A037270
+  ; Mathematica: Table[n^2*((n^2 + 1)/2), {n, 0, 30}]
+  ;(let [seq [0, 1, 10, 45, 136, 325, 666, 1225, 2080, 3321, 5050, 7381, 10440, 14365, 19306, 25425, 32896, 41905, 52650, 65341, 80200, 97461, 117370, 140185, 166176, 195625, 228826, 266085, 307720, 354061, 405450]
+  ;      index (range (count seq))]
+  ;  (map #(vec [%1 %2]) index seq)))
 
-; A000292
-;(let [seq [0, 1, 4, 10, 20, 35, 56, 84, 120, 165, 220, 286, 364, 455, 560, 680, 816, 969, 1140, 1330, 1540]
-;      index (range (count seq))]
-;  (map #(vec [%1 %2]) index seq)))
+  ; A000292
+  ; Mathematica: Table[Binomial[n + 2, 3], {n, 0, 30}]
+  (let [seq [0, 1, 4, 10, 20, 35, 56, 84, 120, 165, 220, 286, 364, 455, 560, 680, 816, 969, 1140, 1330, 1540, 1771, 2024, 2300, 2600, 2925, 3276, 3654, 4060, 4495, 4960]
+        index (range (count seq))]
+    (map #(vec [%1 %2]) index seq)))
 
 (def ingredients '(+ - * / mod abs gcd sqrt sin cos tan x -1 1))
 ;; Specifies ingredients (mathematical operations) to use.
@@ -87,7 +89,7 @@
          cases (shuffle test-pairs)]
     (if (or (empty? cases)
             (empty? (rest candidates)))
-      (first (sort-by #(count (:genome %)) candidates))
+      (rand-nth candidates)
       (let [candidates-w-case-error (add-case-error candidates (first cases))
             min-error (apply min (map :case-error candidates-w-case-error))]
         (recur (filter #(= min-error (:case-error %)) candidates-w-case-error)
@@ -145,7 +147,7 @@
                                       (count population)))
               :best-genome  (:genome current-best)})))
 
-(defn gp [population-size generations test-pairs select-type crossover? elitism?]
+(defn gp [population-size generations test-pairs select-type crossover?]
   "Runs genetic programming to find a function that perfectly fits the test-pairs data
   in the context of the given population-size and number of generations to run."
   (loop [population (repeatedly population-size
@@ -156,14 +158,9 @@
       (if (or (= (:error best-individual) 0)
               (>= generation generations))
         best-individual
-        (if elitism?
-          (recur (conj (repeatedly (dec population-size)
-                                   #(make-child population test-pairs select-type crossover?))
-                       best-individual)
-                 (inc generation))
-          (recur (repeatedly population-size
-                             #(make-child population test-pairs select-type crossover?))
-                 (inc generation)))))))
+        (recur (repeatedly population-size
+                           #(make-child population test-pairs select-type crossover?))
+               (inc generation))))))
 
 
-#_(gp 1000 200 (get-seq) :lexicase-selection true false)
+#_(gp 400 200 (get-seq) :lexicase-selection true)

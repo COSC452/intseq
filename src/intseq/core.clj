@@ -89,9 +89,9 @@
   "Returns an individual selected from the population using tournament selection."
   (best (repeatedly 2 #(rand-nth population))))
 
-(defn select [population test-pairs select-type]
+(defn select [population test-pairs selection-type]
   "Returns an individual selected from population using specified selection method."
-  (case select-type
+  (case selection-type
     :tournament-selection (tournament-selection population)
     :lexicase-selection (lexicase-selection population test-pairs)))
 
@@ -114,12 +114,12 @@
     (vec (concat (take crossover-point genome1)
                  (drop crossover-point genome2)))))
 
-(defn make-child [population test-pairs select-type crossover?]
+(defn make-child [population test-pairs selection-type crossover?]
   "Returns a new, evaluated child, produced by mutating the result
   of crossing over parents that are selected from the given population."
-  (let [new-genome (mutate (if crossover? (crossover (:genome (select population test-pairs select-type))
-                                                     (:genome (select population test-pairs select-type)))
-                                          (:genome (select population test-pairs select-type))))]
+  (let [new-genome (mutate (if crossover? (crossover (:genome (select population test-pairs selection-type))
+                                                     (:genome (select population test-pairs selection-type)))
+                                          (:genome (select population test-pairs selection-type))))]
     {:genome new-genome
      :error  (error new-genome test-pairs)}))
 
@@ -137,7 +137,7 @@
                                       (count population)))
               :best-genome  (:genome current-best)})))
 
-(defn gp [population-size generations test-pairs select-type crossover?]
+(defn gp [population-size generations test-pairs selection-type crossover?]
   "Runs genetic programming to find a function that perfectly fits the test-pairs data
   in the context of the given population-size and number of generations to run."
   (loop [population (repeatedly population-size
@@ -149,8 +149,13 @@
               (>= generation generations))
         best-individual
         (recur (repeatedly population-size
-                           #(make-child population test-pairs select-type crossover?))
+                           #(make-child population test-pairs selection-type crossover?))
                (inc generation))))))
 
-(defn -main []
-  (gp 400 200 (get-seq :A000292) :lexicase-selection true))
+(defn -main [& args]
+  (let [population-size (read-string (nth args 0))
+        generations (read-string (nth args 1))
+        seq-id (read-string (nth args 2))
+        selection-type (read-string (nth args 3))
+        crossover? (read-string (nth args 4))]
+    (gp population-size generations (get-seq seq-id) selection-type crossover?)))

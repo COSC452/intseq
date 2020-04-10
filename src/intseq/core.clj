@@ -1,27 +1,15 @@
 (ns intseq.core
-                                                         (:require [intseq.ops :as ops]
-                                                                   [clojure.math.numeric-tower :as math]))
+  (:require [intseq.ops :as ops]
+            [intseq.seqs :as seqs]
+            [clojure.math.numeric-tower :as math]))
 
-(defn get-seq []
+(defn get-seq [seq-id]
   "Retrieves sequence has an OEIS id of seq-id.
-  Returns a list of coordinate pairs (test-pairs) in the form of (n, a(n)).
-  Note: Retrieval can be done through Mathematica (specified expression or OEIS query)
-        or HTTP request."
-  ; simple test
-  ;(for [x (range 0 10 1)]
-  ;  [x (+ (* x x) (+ 2 x) 2)]))
-
-  ; A037270
-  ; Mathematica: Table[n^2*((n^2 + 1)/2), {n, 0, 30}]
-  ;(let [seq [0, 1, 10, 45, 136, 325, 666, 1225, 2080, 3321, 5050, 7381, 10440, 14365, 19306, 25425, 32896, 41905, 52650, 65341, 80200, 97461, 117370, 140185, 166176, 195625, 228826, 266085, 307720, 354061, 405450]
-  ;      index (range (count seq))]
-  ;  (map #(vec [%1 %2]) index seq)))
-
-  ; A000292
-  ; Mathematica: Table[Binomial[n + 2, 3], {n, 0, 30}]
-  (let [seq [0, 1, 4, 10, 20, 35, 56, 84, 120, 165, 220, 286, 364, 455, 560, 680, 816, 969, 1140, 1330, 1540, 1771, 2024, 2300, 2600, 2925, 3276, 3654, 4060, 4495, 4960]
-        index (range (count seq))]
-    (map #(vec [%1 %2]) index seq)))
+  Returns a list of coordinate pairs (test-pairs) in the form of (n, a(n))."
+  (case seq-id
+    :simple (seqs/simple)
+    :A037270 (seqs/A037270)
+    :A000292 (seqs/A000292)))
 
 (def ingredients '(+ - * / mod abs gcd sqrt sin cos tan x -1 1))
 ;; Specifies ingredients (mathematical operations) to use.
@@ -32,29 +20,31 @@
   "Returns the error of the genome for given input output pair."
   (loop [program genome
          stack ()]
-    (if (empty? program)
-      (if (empty? stack)
-        1000000
-        (math/abs (- output (first stack))))
-      (recur (rest program)
-             (case (first program)
-               + (ops/add stack)
-               - (ops/sub stack)
-               * (ops/mult stack)
-               / (ops/div stack)
-               mod (ops/mod- stack)
-               expt (ops/expt stack)
-               abs (ops/abs stack)
-               gcd (ops/gcd stack)
-               lcm (ops/lcm stack)
-               sqrt (ops/sqrt stack)
-               sin (ops/sin stack)
-               cos (ops/cos stack)
-               tan (ops/tan stack)
-               perm (ops/perm stack)
-               comb (ops/comb stack)
-               x (cons input stack)
-               (cons (first program) stack))))))
+    (if (= (first stack) :overflow)
+      10000000
+      (if (empty? program)
+        (if (empty? stack)
+          10000000
+          (math/abs (- output (first stack))))
+        (recur (rest program)
+               (case (first program)
+                 + (ops/add stack)
+                 - (ops/sub stack)
+                 * (ops/mult stack)
+                 / (ops/div stack)
+                 mod (ops/mod- stack)
+                 expt (ops/expt stack)
+                 abs (ops/abs stack)
+                 gcd (ops/gcd stack)
+                 lcm (ops/lcm stack)
+                 sqrt (ops/sqrt stack)
+                 sin (ops/sin stack)
+                 cos (ops/cos stack)
+                 tan (ops/tan stack)
+                 perm (ops/perm stack)
+                 comb (ops/comb stack)
+                 x (cons input stack)
+                 (cons (first program) stack)))))))
 
 (defn error [genome test-pairs]
   "Returns the error of genome in the context of test-pairs."
@@ -162,5 +152,5 @@
                            #(make-child population test-pairs select-type crossover?))
                (inc generation))))))
 
-
-#_(gp 400 200 (get-seq) :lexicase-selection true)
+(defn -main []
+  (gp 400 200 (get-seq :A000292) :lexicase-selection true))

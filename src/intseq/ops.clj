@@ -46,6 +46,18 @@
                (rest (rest stack)))
          (catch IllegalArgumentException e '(:overflow)))))
 
+(defn log_e [stack]
+  (if (< (count stack) 1)
+    stack
+    (cons (long (Math/log (first stack)))
+          (rest stack))))
+
+(defn log10 [stack]
+  (if (< (count stack) 1)
+    stack
+    (cons (long (Math/log10 (first stack)))
+          (rest stack))))
+
 (defn abs [stack]
   (if (< (count stack) 1)
     stack
@@ -69,6 +81,12 @@
   (if (< (count stack) 1)
     stack
     (cons (long (Math/sqrt (first stack)))
+          (rest stack))))
+
+(defn cbrt [stack]
+  (if (< (count stack) 1)
+    stack
+    (cons (long (Math/cbrt (first stack)))
           (rest stack))))
 
 (defn sin [stack]

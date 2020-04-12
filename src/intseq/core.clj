@@ -11,7 +11,7 @@
     :A037270 (seqs/A037270)
     :A000292 (seqs/A000292)))
 
-(def ingredients '(+ - * / mod abs gcd sqrt sin cos tan x -1 1))
+(def ingredients '(+ - * / mod abs gcd log_e log10 sqrt cbrt sin cos tan x -1 1))
 ;; Specifies ingredients (mathematical operations) to use.
 ;; Note: not all possible operators are included such as expt, lcm, perm, comb.
 ;;        not including them right now, because they make the numbers way too big to compute.

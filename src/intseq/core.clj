@@ -1,25 +1,15 @@
 (ns intseq.core
-                                                         (:require [intseq.ops :as ops]
-                                                                   [clojure.math.numeric-tower :as math]))
+  (:require [intseq.ops :as ops]
+            [intseq.seqs :as seqs]
+            [clojure.math.numeric-tower :as math]))
 
-(defn get-seq []
+(defn get-seq [seq-id]
   "Retrieves sequence has an OEIS id of seq-id.
-  Returns a list of coordinate pairs (test-pairs) in the form of (n, a(n)).
-  Note: Retrieval can be done through Mathematica (specified expression or OEIS query)
-        or HTTP request."
-  ; simple test
-  ;(for [x (range 0 10 1)]
-  ;  [x (+ (* x x) (+ 2 x) 2)]))
-
-; A037270
-(let [seq [0, 1, 10, 45, 136, 325, 666, 1225, 2080, 3321]
-      index (range (count seq))]
-  (map #(vec [%1 %2]) index seq)))
-
-; A000292
-;(let [seq [0, 1, 4, 10, 20, 35, 56, 84, 120, 165, 220, 286, 364, 455, 560, 680, 816, 969, 1140, 1330, 1540]
-;      index (range (count seq))]
-;  (map #(vec [%1 %2]) index seq)))
+  Returns a list of coordinate pairs (test-pairs) in the form of (n, a(n))."
+  (case seq-id
+    :simple (seqs/simple)
+    :A037270 (seqs/A037270)
+    :A000292 (seqs/A000292)))
 
 (def ingredients '(+ - * / mod abs gcd log_e log10 sqrt cbrt sin cos tan x -1 1))
 ;; Specifies ingredients (mathematical operations) to use.
@@ -30,32 +20,31 @@
   "Returns the error of the genome for given input output pair."
   (loop [program genome
          stack ()]
-    (if (empty? program)
-      (if (empty? stack)
-        1000000
-        (math/abs (- output (first stack))))
-      (recur (rest program)
-             (case (first program)
-               + (ops/add stack)
-               - (ops/sub stack)
-               * (ops/mult stack)
-               / (ops/div stack)
-               mod (ops/mod- stack)
-               expt (ops/expt stack)
-               log_e (ops/log_e stack)
-               log10 (ops/log10 stack)
-               abs (ops/abs stack)
-               gcd (ops/gcd stack)
-               lcm (ops/lcm stack)
-               sqrt (ops/sqrt stack)
-               cbrt (ops/cbrt stack)
-               sin (ops/sin stack)
-               cos (ops/cos stack)
-               tan (ops/tan stack)
-               perm (ops/perm stack)
-               comb (ops/comb stack)
-               x (cons input stack)
-               (cons (first program) stack))))))
+    (if (= (first stack) :overflow)
+      10000000
+      (if (empty? program)
+        (if (empty? stack)
+          10000000
+          (math/abs (- output (first stack))))
+        (recur (rest program)
+               (case (first program)
+                 + (ops/add stack)
+                 - (ops/sub stack)
+                 * (ops/mult stack)
+                 / (ops/div stack)
+                 mod (ops/mod- stack)
+                 expt (ops/expt stack)
+                 abs (ops/abs stack)
+                 gcd (ops/gcd stack)
+                 lcm (ops/lcm stack)
+                 sqrt (ops/sqrt stack)
+                 sin (ops/sin stack)
+                 cos (ops/cos stack)
+                 tan (ops/tan stack)
+                 perm (ops/perm stack)
+                 comb (ops/comb stack)
+                 x (cons input stack)
+                 (cons (first program) stack)))))))
 
 (defn error [genome test-pairs]
   "Returns the error of genome in the context of test-pairs."
@@ -90,7 +79,7 @@
          cases (shuffle test-pairs)]
     (if (or (empty? cases)
             (empty? (rest candidates)))
-      (first (sort-by #(count (:genome %)) candidates))
+      (rand-nth candidates)
       (let [candidates-w-case-error (add-case-error candidates (first cases))
             min-error (apply min (map :case-error candidates-w-case-error))]
         (recur (filter #(= min-error (:case-error %)) candidates-w-case-error)
@@ -100,9 +89,9 @@
   "Returns an individual selected from the population using tournament selection."
   (best (repeatedly 2 #(rand-nth population))))
 
-(defn select [population test-pairs select-type]
+(defn select [population test-pairs selection-type]
   "Returns an individual selected from population using specified selection method."
-  (case select-type
+  (case selection-type
     :tournament-selection (tournament-selection population)
     :lexicase-selection (lexicase-selection population test-pairs)))
 
@@ -125,12 +114,12 @@
     (vec (concat (take crossover-point genome1)
                  (drop crossover-point genome2)))))
 
-(defn make-child [population test-pairs select-type crossover?]
+(defn make-child [population test-pairs selection-type crossover?]
   "Returns a new, evaluated child, produced by mutating the result
   of crossing over parents that are selected from the given population."
-  (let [new-genome (mutate (if crossover? (crossover (:genome (select population test-pairs select-type))
-                                                     (:genome (select population test-pairs select-type)))
-                                          (:genome (select population test-pairs select-type))))]
+  (let [new-genome (mutate (if crossover? (crossover (:genome (select population test-pairs selection-type))
+                                                     (:genome (select population test-pairs selection-type)))
+                                          (:genome (select population test-pairs selection-type))))]
     {:genome new-genome
      :error  (error new-genome test-pairs)}))
 
@@ -148,7 +137,7 @@
                                       (count population)))
               :best-genome  (:genome current-best)})))
 
-(defn gp [population-size generations test-pairs select-type crossover? elitism?]
+(defn gp [population-size generations test-pairs selection-type crossover?]
   "Runs genetic programming to find a function that perfectly fits the test-pairs data
   in the context of the given population-size and number of generations to run."
   (loop [population (repeatedly population-size
@@ -159,14 +148,14 @@
       (if (or (= (:error best-individual) 0)
               (>= generation generations))
         best-individual
-        (if elitism?
-          (recur (conj (repeatedly (dec population-size)
-                                   #(make-child population test-pairs select-type crossover?))
-                       best-individual)
-                 (inc generation))
-          (recur (repeatedly population-size
-                             #(make-child population test-pairs select-type crossover?))
-                 (inc generation)))))))
+        (recur (repeatedly population-size
+                           #(make-child population test-pairs selection-type crossover?))
+               (inc generation))))))
 
-
-#_(gp 1000 200 (get-seq) :lexicase-selection true false)
+(defn -main [& args]
+  (let [population-size (read-string (nth args 0))
+        generations (read-string (nth args 1))
+        seq-id (read-string (nth args 2))
+        selection-type (read-string (nth args 3))
+        crossover? (read-string (nth args 4))]
+    (gp population-size generations (get-seq seq-id) selection-type crossover?)))

@@ -5,27 +5,31 @@
 (defn add [stack]
   (if (< (count stack) 2)
     stack
-    (cons (+ (second stack) (first stack))
-          (rest (rest stack)))))
+    (try (cons (+ (second stack) (first stack))
+               (rest (rest stack)))
+         (catch ArithmeticException e '(:overflow)))))
 
 (defn sub [stack]
   (if (< (count stack) 2)
     stack
-    (cons (- (second stack) (first stack))
-          (rest (rest stack)))))
+    (try (cons (- (second stack) (first stack))
+               (rest (rest stack)))
+         (catch ArithmeticException e '(:overflow)))))
 
 (defn mult [stack]
   (if (< (count stack) 2)
     stack
-    (cons (* (second stack) (first stack))
-          (rest (rest stack)))))
+    (try (cons (* (second stack) (first stack))
+               (rest (rest stack)))
+         (catch ArithmeticException e '(:overflow)))))
 
 (defn div [stack]
   (if (or (< (count stack) 2)
           (zero? (first stack)))
     stack
-    (cons (long (/ (second stack) (first stack)))
-          (rest (rest stack)))))
+    (try (cons (long (/ (second stack) (first stack)))
+               (rest (rest stack)))
+         (catch IllegalArgumentException e '(:overflow)))))
 
 (defn mod- [stack]
   (if (or (< (count stack) 2)
@@ -38,8 +42,9 @@
   (if (or (< (count stack) 2)
           (neg? (first stack)))
     stack
-    (cons (math/expt (second stack) (first stack))
-          (rest (rest stack)))))
+    (try (cons (long (math/expt (second stack) (first stack)))
+               (rest (rest stack)))
+         (catch IllegalArgumentException e '(:overflow)))))
 
 (defn log_e [stack]
   (if (< (count stack) 1)
@@ -68,8 +73,9 @@
 (defn lcm [stack]
   (if (< (count stack) 2)
     stack
-    (cons (math/lcm (second stack) (first stack))
-          (rest (rest stack)))))
+    (try (cons (long (math/lcm (second stack) (first stack)))
+               (rest (rest stack)))
+         (catch IllegalArgumentException e '(:overflow)))))
 
 (defn sqrt [stack]
   (if (< (count stack) 1)
@@ -104,11 +110,13 @@
 (defn perm [stack]
   (if (< (count stack) 1)
     stack
-    (cons (long (combo/count-permutations (range (first stack))))
-          (rest stack))))
+    (try (cons (long (combo/count-permutations (range (first stack))))
+               (rest stack))
+         (catch IllegalArgumentException e '(:overflow)))))
 
 (defn comb [stack]
   (if (< (count stack) 2)
     stack
-    (cons (long (combo/count-combinations (range (second stack)) (first stack)))
-          (rest (rest stack)))))
+    (try (cons (long (combo/count-combinations (range (second stack)) (first stack)))
+               (rest (rest stack)))
+         (catch IllegalArgumentException e '(:overflow)))))

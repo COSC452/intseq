@@ -49,14 +49,16 @@
 (defn log_e [stack]
   (if (< (count stack) 1)
     stack
-    (cons (long (Math/log (first stack)))
-          (rest stack))))
+    (try (cons (long (Math/log (math/abs (first stack))))
+               (rest stack))
+         (catch IllegalArgumentException e '(:overflow)))))
 
-(defn log10 [stack]
+(defn log_10 [stack]
   (if (< (count stack) 1)
     stack
-    (cons (long (Math/log10 (first stack)))
-          (rest stack))))
+    (try (cons (long (Math/log10 (math/abs (first stack))))
+               (rest stack))
+         (catch IllegalArgumentException e '(:overflow)))))
 
 (defn abs [stack]
   (if (< (count stack) 1)

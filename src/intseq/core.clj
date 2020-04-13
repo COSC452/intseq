@@ -11,7 +11,7 @@
     :A037270 (seqs/A037270)
     :A000292 (seqs/A000292)))
 
-(def ingredients '(+ - * / mod abs gcd log_e log10 sqrt cbrt sin cos tan x -1 1))
+(def ingredients '(+ - * / x -1 0 1))
 ;; Specifies ingredients (mathematical operations) to use.
 ;; Note: not all possible operators are included such as expt, lcm, perm, comb.
 ;;        not including them right now, because they make the numbers way too big to compute.
@@ -34,10 +34,13 @@
                  / (ops/div stack)
                  mod (ops/mod- stack)
                  expt (ops/expt stack)
+                 log_e (ops/log_e stack)
+                 log_10 (ops/log_10 stack)
                  abs (ops/abs stack)
                  gcd (ops/gcd stack)
                  lcm (ops/lcm stack)
                  sqrt (ops/sqrt stack)
+                 cbrt (ops/cbrt stack)
                  sin (ops/sin stack)
                  cos (ops/cos stack)
                  tan (ops/tan stack)
@@ -95,31 +98,59 @@
     :tournament-selection (tournament-selection population)
     :lexicase-selection (lexicase-selection population test-pairs)))
 
-(defn mutate [genome]
+(defn mutate [genome umad-add-rate umad-del-rate]
   "Returns a possibly-mutated copy of genome."
   (let [with-additions (flatten (for [g genome]
-                                  (if (< (rand) 1/20)
+                                  (if (< (rand) umad-add-rate)
                                     (shuffle (list g (rand-nth ingredients)))
                                     g)))
         with-deletions (flatten (for [g with-additions]
-                                  (if (< (rand) 1/11)
+                                  (if (< (rand) umad-del-rate)
                                     ()
                                     g)))]
     (vec with-deletions)))
 
-(defn crossover [genome1 genome2]
-  "Returns a one-point crossover product of genome1 and genome2"
+
+(defn single-point-crossover [genome1 genome2]
+  "Performs single-point-crossover on two genomes and returns a new genome."
   (let [crossover-point (rand-int (inc (min (count genome1)
                                             (count genome2))))]
     (vec (concat (take crossover-point genome1)
                  (drop crossover-point genome2)))))
 
-(defn make-child [population test-pairs selection-type crossover?]
+(defn uniform-crossover [genome1 genome2]
+  "Performs uniform-crossover on two genomes and returns a new genome."
+  (let [longer-genome (if (> (count genome1) (count genome2))
+                        genome1
+                        genome2)
+        tail-genome-start-pos (- (count longer-genome)
+                                 (Math/abs (- (count genome1) (count genome2))))]
+    (vec (flatten (conj (vec (map (fn [g1 g2]
+                                    (if (rand-nth [true false]) g1 g2))
+                                  genome1
+                                  genome2))
+                        (vec (take (rand-nth (range (+ 1 (Math/abs (- (count genome1) (count genome2))))))
+                                   (subvec longer-genome tail-genome-start-pos))))))))
+
+(defn crossover [genome1 genome2 crossover-type]
+  "Returns a one-point crossover product of genome1 and genome2"
+  (case crossover-type
+    :single-point-crossover (single-point-crossover genome1 genome2)
+    :uniform-crossover (uniform-crossover genome1 genome2)))
+
+(defn make-child [population test-pairs selection-type crossover? crossover-type mutate? umad-add-rate umad-del-rate]
   "Returns a new, evaluated child, produced by mutating the result
   of crossing over parents that are selected from the given population."
-  (let [new-genome (mutate (if crossover? (crossover (:genome (select population test-pairs selection-type))
-                                                     (:genome (select population test-pairs selection-type)))
-                                          (:genome (select population test-pairs selection-type))))]
+  (let [parent-genome1 (:genome (select population test-pairs selection-type))
+        parent-genome2 (:genome (select population test-pairs selection-type))
+        crossover-genome (crossover parent-genome1 parent-genome2 crossover-type)
+        new-genome (if crossover?
+                     (if mutate?
+                       (mutate crossover-genome umad-add-rate umad-del-rate) ;; crossover and mutate
+                       crossover-genome) ;; crossover but no don't mutate
+                     (if mutate?
+                       (mutate parent-genome1 umad-add-rate umad-del-rate) ;; don't crossover but mutate
+                       parent-genome1))]  ;; don't crossover and don't mutate
     {:genome new-genome
      :error  (error new-genome test-pairs)}))
 
@@ -137,7 +168,8 @@
                                       (count population)))
               :best-genome  (:genome current-best)})))
 
-(defn gp [population-size generations test-pairs selection-type crossover?]
+(defn gp [population-size generations test-pairs selection-type crossover? crossover-type
+          mutate? umad-add-rate umad-del-rate elitism?]
   "Runs genetic programming to find a function that perfectly fits the test-pairs data
   in the context of the given population-size and number of generations to run."
   (loop [population (repeatedly population-size
@@ -148,14 +180,33 @@
       (if (or (= (:error best-individual) 0)
               (>= generation generations))
         best-individual
-        (recur (repeatedly population-size
-                           #(make-child population test-pairs selection-type crossover?))
+        (recur (if elitism?
+                 (conj (repeatedly (dec population-size)
+                                   #(make-child population test-pairs selection-type
+                                                crossover? crossover-type
+                                                mutate? umad-add-rate umad-del-rate))
+                       best-individual)
+                 (repeatedly population-size
+                             #(make-child population test-pairs selection-type
+                                          crossover? crossover-type
+                                          mutate? umad-add-rate umad-del-rate)))
                (inc generation))))))
 
 (defn -main [& args]
+  "Input: <int> population-size, <int> generations, <keyword> seq-id, <keyword> selection-type,
+          <boolean> crossover?, <keyword> crossover-type,
+          <boolean> mutate?, <float> umad-add-rate, <float> umad-del-rate,
+          <boolean> elitism?
+   Example Input: lein run 200 200 :simple :lexicase-selection true :uniform-crossover true 0.09 0.1 true"
   (let [population-size (read-string (nth args 0))
         generations (read-string (nth args 1))
         seq-id (read-string (nth args 2))
         selection-type (read-string (nth args 3))
-        crossover? (read-string (nth args 4))]
-    (gp population-size generations (get-seq seq-id) selection-type crossover?)))
+        crossover? (read-string (nth args 4))
+        crossover-type (read-string (nth args 5))
+        mutate? (read-string (nth args 6))
+        umad-add-rate (read-string (nth args 7))
+        umad-del-rate (read-string (nth args 8))
+        elitism? (read-string (nth args 9))]
+    (gp population-size generations (get-seq seq-id) selection-type
+        crossover? crossover-type mutate? umad-add-rate umad-del-rate elitism?)))

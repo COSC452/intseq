@@ -110,6 +110,19 @@
                                     g)))]
     (vec with-deletions)))
 
+(defn umad-crossover [genome1 genome2 umad-add-rate umad-del-rate]
+  "Performs umad-crossover on two genomes and returns a new genome.
+  NO MUTATION should be done after this operation; mutation argument in -main should be set to false."
+  (let [with-additions (flatten (map (fn [g1 g2]
+                                       (if (< (rand) umad-add-rate)
+                                         (shuffle (list g1 g2))
+                                         g1))
+                                     genome1 genome2))
+        with-deletions (flatten (for [g with-additions]
+                                  (if (< (rand) umad-del-rate)
+                                    ()
+                                    g)))]
+    (vec with-deletions)))
 
 (defn single-point-crossover [genome1 genome2]
   "Performs single-point-crossover on two genomes and returns a new genome."
@@ -132,9 +145,10 @@
                         (vec (take (rand-nth (range (+ 1 (Math/abs (- (count genome1) (count genome2))))))
                                    (subvec longer-genome tail-genome-start-pos))))))))
 
-(defn crossover [genome1 genome2 crossover-type]
+(defn crossover [genome1 genome2 crossover-type umad-add-rate umad-del-rate]
   "Returns a one-point crossover product of genome1 and genome2"
   (case crossover-type
+    :umad-crossover (umad-crossover genome1 genome2 umad-add-rate umad-del-rate)
     :single-point-crossover (single-point-crossover genome1 genome2)
     :uniform-crossover (uniform-crossover genome1 genome2)))
 
@@ -143,7 +157,7 @@
   of crossing over parents that are selected from the given population."
   (let [parent-genome1 (:genome (select population test-pairs selection-type))
         parent-genome2 (:genome (select population test-pairs selection-type))
-        crossover-genome (crossover parent-genome1 parent-genome2 crossover-type)
+        crossover-genome (crossover parent-genome1 parent-genome2 crossover-type umad-add-rate umad-del-rate)
         new-genome (if crossover?
                      (if mutate?
                        (mutate crossover-genome umad-add-rate umad-del-rate) ;; crossover and mutate

@@ -34,6 +34,8 @@
                  / (ops/div stack)
                  mod (ops/mod- stack)
                  expt (ops/expt stack)
+                 max (ops/max- stack)
+                 min (ops/min- stack)
                  log_e (ops/log_e stack)
                  log_10 (ops/log_10 stack)
                  abs (ops/abs stack)

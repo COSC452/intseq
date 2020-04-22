@@ -7,14 +7,17 @@
   "Retrieves sequence has an OEIS id of seq-id.
   Returns a list of coordinate pairs (test-pairs) in the form of (n, a(n))."
   (case seq-id
-    :simple (seqs/simple)
-    :A037270 (seqs/A037270)
-    :A000292 (seqs/A000292)))
+    :simple seqs/simple
+    :A037270 seqs/A037270
+    :A000292 seqs/A000292
+    :A114241 seqs/A114241
+    :A168392 seqs/A168392
+    :A005132 seqs/A005132))
 
 (def ingredients '(+ - * / x -1 0 1))
 ;; Specifies ingredients (mathematical operations) to use.
 ;; Note: not all possible operators are included such as expt, lcm, perm, comb.
-;;        not including them right now, because they make the numbers way too big to compute.
+;;       not including them right now, because they make the numbers way too big to compute.
 
 (defn error-loop [genome input output]
   "Returns the error of the genome for given input output pair."
@@ -163,10 +166,10 @@
         new-genome (if crossover?
                      (if mutate?
                        (mutate crossover-genome umad-add-rate umad-del-rate) ;; crossover and mutate
-                       crossover-genome) ;; crossover but no don't mutate
+                       crossover-genome)                    ;; crossover but no don't mutate
                      (if mutate?
                        (mutate parent-genome1 umad-add-rate umad-del-rate) ;; don't crossover but mutate
-                       parent-genome1))]  ;; don't crossover and don't mutate
+                       parent-genome1))]                    ;; don't crossover and don't mutate
     {:genome new-genome
      :error  (error new-genome test-pairs)}))
 
@@ -209,11 +212,19 @@
                (inc generation))))))
 
 (defn -main [& args]
-  "Input: <int> population-size, <int> generations, <keyword> seq-id, <keyword> selection-type,
-          <boolean> crossover?, <keyword> crossover-type,
-          <boolean> mutate?, <float> umad-add-rate, <float> umad-del-rate,
+  "Input: <int> population-size,
+          <int> generations,
+          <keyword> seq-id,
+          <keyword> selection-type,
+          <boolean> crossover?,
+          <keyword> crossover-type,
+          <boolean> mutate?,
+          <float> umad-add-rate,
+          <float> umad-del-rate,
           <boolean> elitism?
-   Example Input: lein run 200 200 :simple :lexicase-selection true :uniform-crossover true 0.09 0.1 true"
+
+   Example Input:
+          lein run 200 200 :simple :lexicase-selection true :uniform-crossover true 0.09 0.1 true"
   (let [population-size (read-string (nth args 0))
         generations (read-string (nth args 1))
         seq-id (read-string (nth args 2))
@@ -224,5 +235,5 @@
         umad-add-rate (read-string (nth args 7))
         umad-del-rate (read-string (nth args 8))
         elitism? (read-string (nth args 9))]
-    (gp population-size generations (get-seq seq-id) selection-type
-        crossover? crossover-type mutate? umad-add-rate umad-del-rate elitism?)))
+    (time (gp population-size generations (get-seq seq-id) selection-type
+        crossover? crossover-type mutate? umad-add-rate umad-del-rate elitism?))))

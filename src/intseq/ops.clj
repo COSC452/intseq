@@ -47,14 +47,14 @@
          (catch IllegalArgumentException e '(:overflow)))))
 
 (defn max- [stack]
-"Pushes the maximum of the top two items onto the top of the stack."
+  "Pushes the maximum of the top two items onto the top of the stack."
   (if (< (count stack) 2)
     stack
     (cons (max (second stack) (first stack))
           (rest (rest stack)))))
 
 (defn min- [stack]
-"Pushes the minimum of the top two items onto the top of the stack."
+  "Pushes the minimum of the top two items onto the top of the stack."
   (if (< (count stack) 2)
     stack
     (cons (min (second stack) (first stack))

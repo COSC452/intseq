@@ -263,13 +263,13 @@
 (defn -main [& args]
   "Input: <int> population-size,
           <int> generations,
-          <keyword> seq-id,
-          <keyword> selection-type,
+          <keyword> seq-id: {:simple :A037270 :A000292 :A114241 :A168392 :A005132},
+          <keyword> selection-type: {:lexicase-selection :tournament-selection},
           <boolean> crossover?,
-          <keyword> crossover-type,
+          <keyword> crossover-type: {:single-point-crossover :uniform-crossover :umad-crossover},
           <boolean> mutate?,
-          <float> umad-add-rate,
-          <float> umad-del-rate,
+          <float> umad-add-rate: [0, 1.0],
+          <float> umad-del-rate: [0, 1.0],
           <boolean> elitism?,
           <boolean> report?,
           <boolean> export-stats?

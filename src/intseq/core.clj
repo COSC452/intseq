@@ -238,7 +238,8 @@
           (if (= (:error best-individual) 0)
             (println "Found solution for training cases")
             (println "Found approximation for training cases"))
-          {:function     (convert (:genome best-individual))
+          {:genome       (:genome best-individual)
+           :function     (convert (:genome best-individual))
            :generation   generation
            :best-error   (:error best-individual)
            :diversity    (float (/ (count (distinct population))
@@ -302,9 +303,12 @@
       (println "Solution matches testing cases - Success!")
       (println "Solution approximate or does not match test cases - Failure!"))
     (if export-stats?
-      (let [filename (str population-size "_" generations "_" (name seq-id) "_" (name selection-type) "_"
-                          crossover? "_" (name crossover-type) "_" mutate? "_" umad-add-rate "_"
-                          umad-del-rate "_" elitism? ".csv")
+      (let [filename (str "data/" population-size "_" generations "_" (name seq-id) "_"
+                          (name selection-type) "_" crossover? "_" (name crossover-type) "_"
+                          mutate? "_" umad-add-rate "_" umad-del-rate "_" elitism? ".csv")
             stats-map (assoc (dissoc result :function) :success? success?)
-            stats-csv (clojure.string/join ", " (vals stats-map))]
+            stats-csv (str (clojure.string/join ", " (vals stats-map)) "\n")]
+        ;; first time we write to .csv, add in the column names
+        (when (not (.exists (clojure.java.io/as-file filename)))
+          (spit filename "genome, generations, best_error, diversity, avg_size, time_taken, found_solution\n"))
         (spit filename stats-csv :append true)))))

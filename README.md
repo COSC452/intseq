@@ -1,6 +1,18 @@
 # intseq
 
-A Clojure library designed to ... well, that part is up to you.
+A Clojure library using genetic programming techniques to find formulas for given sequences.
+
+
+## Motivation
+After browsing the [On-Line Encyclopedia of Integer Sequences (OEIS)](https://oeis.org/), we noticed that many of the sequences listed in the database were without formulas. Given the nature of Genetic Programming (GP) to discover solutions to problems that humans do not know how to solve directly, we knew there was an opportunity to create a program that takes advantage of GP in order to solve the problem of finding a formula. IntSeq attempts to find a formula that holds true for the first n integers in the sequence. Our program also includes testing the formulas for accuracy by seeing whether they hold true for numbers n+1 and beyond. 
+
+## Screenshots
+
+## Tech Used
+
+## Features
+
+## Code Example
 
 ## Usage
 

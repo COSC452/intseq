@@ -1,0 +1,20 @@
+#!/bin/zsh
+#
+# This is a bash script to automate the collection of data. 
+# Note that the output will always be redirected to a .csv file.
+#
+# USAGE:
+# At the command line in the root project directory, enter:
+# > source ./collect-data
+# > collect-data [number of runs] [arguments to clojure.core/main]
+#
+# EXAMPLE:
+# collect-data 10 200 200 :simple :lexicase-selection true :uniform-crossover true 0.09 0.1 true true true
+
+collect-data () {
+  n=$1
+  for i in `seq $n`;
+    do printf "Run $i of $n: "
+       lein run $2 $3 $4 $5 $6 $7 $8 $9 $10 $11 $12 true;
+  done
+}

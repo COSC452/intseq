@@ -3,21 +3,56 @@
             [intseq.seqs :as seqs]
             [clojure.math.numeric-tower :as math]))
 
-(defn get-seq [seq-id]
-  "Retrieves sequence has an OEIS id of seq-id.
-  Returns a list of coordinate pairs (test-pairs) in the form of (n, a(n))."
-  (case seq-id
-    :simple seqs/simple
-    :A037270 seqs/A037270
-    :A000292 seqs/A000292
-    :A114241 seqs/A114241
-    :A168392 seqs/A168392
-    :A005132 seqs/A005132))
+(defmacro time-process
+  [& body]
+  `(let [s# (new java.io.StringWriter)]
+     (binding [*out* s#]
+       (let [r# ~@body]
+         (assoc r# :time-elapsed (.replaceAll (str s#) "[^0-9\\.]" ""))))))
 
-(def ingredients '(+ - * / x -1 0 1))
+(defn get-seq
+  "Retrieves a sequence by its OEIS id, returning the terms as a list of coordinate pairs
+  (test-pairs) in the form of (n, a(n)). The optional argument <keyword> subset allows for
+  getting only the training terms (:training) or only the testing terms (:testing)."
+  ([seq-id]
+   (case seq-id
+     :simple seqs/simple
+     :A037270 seqs/A037270
+     :A000292 seqs/A000292
+     :A114241 seqs/A114241
+     :A168392 seqs/A168392
+     :A005132 seqs/A005132))
+  ([seq-id subset]
+   (get (seqs/split-sequence (get-seq seq-id)) subset)))
+
+(defn evaluate [genome input]
+  "Returns the result obtained by evaluating the genome at a specific input."
+  (loop [program genome
+         stack ()]
+    (if (= (first stack) :overflow)
+      10000000
+      (if (empty? program)
+        (if (empty? stack)
+          10000000
+          (first stack))
+        (recur (rest program)
+               (case (first program)
+                 + (ops/add stack)
+                 - (ops/sub stack)
+                 * (ops/mult stack)
+                 / (ops/div stack)
+                 x (cons input stack)
+                 (cons (first program) stack)))))))
+
+(defn convert [genome]
+  "Converts a stack-based genome to a Clojure function."
+  (fn [n]
+    (evaluate genome n)))
+
 ;; Specifies ingredients (mathematical operations) to use.
 ;; Note: not all possible operators are included such as expt, lcm, perm, comb.
 ;;       not including them right now, because they make the numbers way too big to compute.
+(def ingredients '(+ - * / x -1 0 1))
 
 (defn error-loop [genome input output]
   "Returns the error of the genome for given input output pair."
@@ -188,17 +223,31 @@
               :best-genome  (:genome current-best)})))
 
 (defn gp [population-size generations test-pairs selection-type crossover? crossover-type
-          mutate? umad-add-rate umad-del-rate elitism?]
-  "Runs genetic programming to find a function that perfectly fits the test-pairs data
+          mutate? umad-add-rate umad-del-rate elitism? report?]
+  "Runs genetic programming to find and return a function that perfectly fits the test-pairs data
   in the context of the given population-size and number of generations to run."
   (loop [population (repeatedly population-size
                                 #(new-individual test-pairs))
          generation 0]
-    (report generation population)
+    (when report?
+      (report generation population))
     (let [best-individual (best population)]
       (if (or (= (:error best-individual) 0)
               (>= generation generations))
-        best-individual
+        (do
+          (if (= (:error best-individual) 0)
+            (println "Found solution for training cases")
+            (println "Found approximation for training cases"))
+          {:function     (convert (:genome best-individual))
+           :generation   generation
+           :best-error   (:error best-individual)
+           :diversity    (float (/ (count (distinct population))
+                                   (count population)))
+           :average-size (float (/ (->> population
+                                        (map :genome)
+                                        (map count)
+                                        (reduce +))
+                                   (count population)))})
         (recur (if elitism?
                  (conj (repeatedly (dec population-size)
                                    #(make-child population test-pairs selection-type
@@ -221,10 +270,14 @@
           <boolean> mutate?,
           <float> umad-add-rate,
           <float> umad-del-rate,
-          <boolean> elitism?
+          <boolean> elitism?,
+          <boolean> report?,
+          <boolean> export-stats?
+
+   Note: setting export-stats? to true will automatically make report? be false
 
    Example Input:
-          lein run 200 200 :simple :lexicase-selection true :uniform-crossover true 0.09 0.1 true"
+          lein run 200 200 :simple :lexicase-selection true :uniform-crossover true 0.09 0.1 true true false"
   (let [population-size (read-string (nth args 0))
         generations (read-string (nth args 1))
         seq-id (read-string (nth args 2))
@@ -234,6 +287,24 @@
         mutate? (read-string (nth args 6))
         umad-add-rate (read-string (nth args 7))
         umad-del-rate (read-string (nth args 8))
-        elitism? (read-string (nth args 9))]
-    (time (gp population-size generations (get-seq seq-id) selection-type
-        crossover? crossover-type mutate? umad-add-rate umad-del-rate elitism?))))
+        elitism? (read-string (nth args 9))
+        report? (read-string (nth args 10))
+        export-stats? (read-string (nth args 11))
+        training-terms (get-seq seq-id :training)
+        result (if export-stats?
+                 (time-process (time (gp population-size generations training-terms selection-type
+                                         crossover? crossover-type mutate? umad-add-rate umad-del-rate elitism? false)))
+                 (gp population-size generations training-terms selection-type
+                     crossover? crossover-type mutate? umad-add-rate umad-del-rate elitism? report?))
+        success? (and (= 0 (:best-error result))
+                      (seqs/check (:function result) (get-seq seq-id)))]
+    (if success?
+      (println "Solution matches testing cases - Success!")
+      (println "Solution approximate or does not match test cases - Failure!"))
+    (if export-stats?
+      (let [filename (str population-size "_" generations "_" (name seq-id) "_" (name selection-type) "_"
+                          crossover? "_" (name crossover-type) "_" mutate? "_" umad-add-rate "_"
+                          umad-del-rate "_" elitism? ".csv")
+            stats-map (assoc (dissoc result :function) :success? success?)
+            stats-csv (clojure.string/join ", " (vals stats-map))]
+        (spit filename stats-csv :append true)))))

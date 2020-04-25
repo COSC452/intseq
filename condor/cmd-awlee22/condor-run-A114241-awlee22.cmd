@@ -4,7 +4,7 @@ notification = error
 notify_user  = awlee22@amherst.edu
 initialdir  = /mnt/scratch/awlee22/intseq
 getenv = True
-executable  = run-A114241
+executable  = /home/awlee22/cluster-scratch/intseq/condor/run-A114241
 
 ## Job properties: A114241
 output = /home/awlee22/cluster-scratch/intseq/results/A114241/out

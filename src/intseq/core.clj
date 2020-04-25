@@ -225,7 +225,10 @@
 (defn gp [population-size generations test-pairs selection-type crossover? crossover-type
           mutate? umad-add-rate umad-del-rate elitism? report?]
   "Runs genetic programming to find and return a function that perfectly fits the test-pairs data
-  in the context of the given population-size and number of generations to run."
+  in the context of the given population-size and number of generations to run-simple."
+  (println "Running:" [:population-size population-size :generations generations :selection-type selection-type
+                       :crossover? crossover? :crossover-type crossover-type :mutate? mutate?
+                       :umad-add-rate umad-add-rate :umad-del-rate umad-del-rate :elitism? elitism?])
   (loop [population (repeatedly population-size
                                 #(new-individual test-pairs))
          generation 0]
@@ -278,7 +281,7 @@
    Note: setting export-stats? to true will automatically make report? be false
 
    Example Input:
-          lein run 200 200 :simple :lexicase-selection true :uniform-crossover true 0.09 0.1 true true false"
+          lein run-simple 200 200 :simple :lexicase-selection true :single-point-crossover true 0.09 0.1 true true false"
   (let [population-size (read-string (nth args 0))
         generations (read-string (nth args 1))
         seq-id (read-string (nth args 2))

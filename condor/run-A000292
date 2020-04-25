@@ -2,7 +2,7 @@
 
 # Running with UMAD and single-point-crossover
 echo "Running with UMAD and single-point-crossover."
-runs=1
+runs=50
 for i in `seq $runs`;
     do printf "Run $i of $runs: "
         lein run 200 200 :A000292 :lexicase-selection true :single-point-crossover true 0.09 0.1 true true false

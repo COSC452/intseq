@@ -1,410 +1,105 @@
 Running with UMAD and single-point-crossover.
 Run 1 of 1: Running: [:population-size 200 :generations 200 :selection-type :lexicase-selection :crossover? true :crossover-type :single-point-crossover :mutate? true :umad-add-rate 0.09 :umad-del-rate 0.1 :elitism? true]
-{:generation 0, :best-error 29557, :diversity 1.0, :average-size 5.0, :best-genome [1 x + x *]}
-{:generation 1, :best-error 27577, :diversity 0.415, :average-size 4.885, :best-genome [1 - x + x x * *]}
-{:generation 2, :best-error 14554, :diversity 0.66, :average-size 7.335, :best-genome [1 x / 0 + x x x x * * *]}
-{:generation 3, :best-error 12529, :diversity 0.835, :average-size 10.76, :best-genome [1 / 0 x + x x x x * + * *]}
-{:generation 4, :best-error 1015, :diversity 0.825, :average-size 11.805, :best-genome [1 + x x + x * x x * *]}
-{:generation 5, :best-error 1015, :diversity 0.835, :average-size 11.485, :best-genome [0 1 + x x x + x * x x * *]}
-{:generation 6, :best-error 1015, :diversity 0.985, :average-size 12.015, :best-genome [1 + x x + x * x x * *]}
-{:generation 7, :best-error 990, :diversity 0.965, :average-size 12.005, :best-genome [x + -1 x x x + x * * + * 1 /]}
-{:generation 8, :best-error 990, :diversity 0.955, :average-size 13.405, :best-genome [x + -1 x x x + x * * + * 1 /]}
-{:generation 9, :best-error 965, :diversity 0.95, :average-size 14.34, :best-genome [-1 x x x + x * * + * 1 - x * /]}
-{:generation 10, :best-error 804, :diversity 0.99, :average-size 15.02, :best-genome [x -1 x 0 / x x + x * 0 - + x * - * * /]}
-{:generation 11, :best-error 804, :diversity 0.99, :average-size 14.55, :best-genome [x -1 x x + x * + x * *]}
-{:generation 12, :best-error 804, :diversity 0.99, :average-size 15.45, :best-genome [x -1 x x + x * + x * * - * *]}
-{:generation 13, :best-error 804, :diversity 0.98, :average-size 14.435, :best-genome [x -1 x x + x * + x * *]}
-{:generation 14, :best-error 804, :diversity 1.0, :average-size 16.335, :best-genome [x -1 x x + x * + x * *]}
-{:generation 15, :best-error 804, :diversity 0.985, :average-size 18.205, :best-genome [-1 1 x x + x * - * / x * x * *]}
-{:generation 16, :best-error 804, :diversity 1.0, :average-size 20.595, :best-genome [x -1 x x + x * + * * - * x * 1 - - 0 + -1 - * *]}
-{:generation 17, :best-error 789, :diversity 1.0, :average-size 21.015, :best-genome [* x x x + x * * 1 x + - x * * + 0 - - * +]}
-{:generation 18, :best-error 789, :diversity 0.99, :average-size 21.835, :best-genome [* x x x + x * * 1 x + - x * * + 0 - - * +]}
-{:generation 19, :best-error 787, :diversity 1.0, :average-size 22.255, :best-genome [* x x x + x * * 1 x + - x * * + 0 - * -1 -]}
-{:generation 20, :best-error 642, :diversity 1.0, :average-size 23.345, :best-genome [x * x -1 + x x + * * 1 x + * / * * - -1 - - * * + x +]}
-{:generation 21, :best-error 597, :diversity 1.0, :average-size 23.94, :best-genome [x * x -1 + x x + * * 1 x + * * * x -1 + 0 - - x - * +]}
-{:generation 22, :best-error 597, :diversity 1.0, :average-size 24.625, :best-genome [x x -1 + x x + * * 1 x + * * * x -1 + 0 - - x - * +]}
-{:generation 23, :best-error 597, :diversity 1.0, :average-size 24.375, :best-genome [x x -1 + x x + * * 1 x + * * * x -1 + 0 - - x - * +]}
-{:generation 24, :best-error 597, :diversity 1.0, :average-size 25.21, :best-genome [x - -1 x + x x + * * 1 * 1 x + 1 * * x -1 1 0 - - + - * - * x - * +]}
-{:generation 25, :best-error 498, :diversity 1.0, :average-size 23.825, :best-genome [-1 x x x -1 + x x + * * - 1 x + * * * x x -1 0 / - - x - * - - * * +]}
-{:generation 26, :best-error 480, :diversity 1.0, :average-size 26.56, :best-genome [x - x -1 + x x + * * - 1 x + * * / x x -1 0 / - - 1 - * - * +]}
-{:generation 27, :best-error 480, :diversity 1.0, :average-size 28.945, :best-genome [x - x -1 + x x + * * - 1 x + * * / x x -1 0 / - - 1 - * - * +]}
-{:generation 28, :best-error 480, :diversity 0.995, :average-size 29.815, :best-genome [x - x -1 + x x + * * - 1 x + * * / x x -1 0 / - - 1 - * - * +]}
-{:generation 29, :best-error 480, :diversity 1.0, :average-size 28.96, :best-genome [x - x -1 + x x + * * - 1 x + * * / x x -1 0 / - - 1 - * - * +]}
-{:generation 30, :best-error 480, :diversity 1.0, :average-size 28.555, :best-genome [x - x -1 + x x + * * - 1 x + * * / x x -1 0 / - - 1 - * - * +]}
-{:generation 31, :best-error 480, :diversity 0.995, :average-size 28.04, :best-genome [x - x -1 + x x + * * - 1 x + * * / x x -1 0 / - - 1 - * - * +]}
-{:generation 32, :best-error 480, :diversity 1.0, :average-size 28.495, :best-genome [x - x -1 + x x + * * - 1 x + * * / x x -1 0 / - - 1 - * - * +]}
-{:generation 33, :best-error 480, :diversity 1.0, :average-size 27.87, :best-genome [x - - x -1 + x x + * * - 1 x + * * / x x -1 0 / - - 1 - * - * +]}
-{:generation 34, :best-error 480, :diversity 1.0, :average-size 28.48, :best-genome [x x -1 + x x + * * - 1 x + * * / x x -1 0 / - - 1 - * - * +]}
-{:generation 35, :best-error 480, :diversity 1.0, :average-size 29.6, :best-genome [x x -1 + x x + * * - 1 x + * * / x x -1 0 / - - 1 - * - * +]}
-{:generation 36, :best-error 480, :diversity 1.0, :average-size 29.345, :best-genome [x x -1 + x x + * * - 1 x + * * / x x -1 0 / - - 1 - * - * +]}
-{:generation 37, :best-error 480, :diversity 1.0, :average-size 29.575, :best-genome [x x -1 + x x + * * - 1 x + * * / x x -1 0 / - - 1 - * - * +]}
-{:generation 38, :best-error 480, :diversity 1.0, :average-size 28.325, :best-genome [x x -1 + x x + * 1 x + * x -1 0 / - - 1 / 1 - - * -]}
-{:generation 39, :best-error 480, :diversity 1.0, :average-size 26.33, :best-genome [x x -1 + x x + * 1 x + * x -1 0 / - - 1 / 1 - - * -]}
-{:generation 40, :best-error 480, :diversity 1.0, :average-size 25.2, :best-genome [x x -1 + x x + * 1 x + * x -1 0 / - - 1 / 1 - - * -]}
-{:generation 41, :best-error 480, :diversity 1.0, :average-size 23.96, :best-genome [x x -1 + x x + * 1 x + * x -1 0 / - - 1 / 1 - - * -]}
-{:generation 42, :best-error 480, :diversity 0.995, :average-size 23.165, :best-genome [x x -1 + x x + * 1 x + * x -1 0 / - - 1 / 1 - - * -]}
-{:generation 43, :best-error 480, :diversity 1.0, :average-size 22.835, :best-genome [x x -1 + x x + * 1 x + * x -1 0 / - - 1 / 1 - - * -]}
-{:generation 44, :best-error 480, :diversity 1.0, :average-size 22.695, :best-genome [x x -1 + x x + * 1 x + * x -1 0 / - - 1 / 1 - - * -]}
-{:generation 45, :best-error 476, :diversity 1.0, :average-size 23.37, :best-genome [x x x -1 + x x + * 1 x + * x -1 0 / - - 1 / 1 - - * -1 -]}
-{:generation 46, :best-error 476, :diversity 1.0, :average-size 22.95, :best-genome [x x x -1 + x x + * 1 x + * x -1 0 / - - 1 / 1 - - * -1 -]}
-{:generation 47, :best-error 476, :diversity 0.995, :average-size 23.055, :best-genome [x x -1 + x x x + * 1 x + * x -1 - 0 / 1 / - - *]}
-{:generation 48, :best-error 476, :diversity 0.995, :average-size 23.42, :best-genome [x x -1 + x x x + * 1 x + * x -1 - 0 / 1 / - - *]}
-{:generation 49, :best-error 476, :diversity 0.995, :average-size 23.215, :best-genome [x x -1 + x x x + * 1 x + * x -1 - 0 / 1 / - - *]}
-{:generation 50, :best-error 476, :diversity 1.0, :average-size 23.64, :best-genome [x x -1 + x x x + * 1 x + * x -1 - 0 / 1 / - - *]}
-{:generation 51, :best-error 476, :diversity 1.0, :average-size 23.475, :best-genome [x x -1 + x x x + * 1 x + * x -1 - 0 / 1 / - - *]}
-{:generation 52, :best-error 476, :diversity 1.0, :average-size 22.03, :best-genome [x x -1 + x x x + * 1 x + * x -1 - 0 / 1 / - - *]}
-{:generation 53, :best-error 476, :diversity 1.0, :average-size 22.775, :best-genome [x x -1 + x x x + * 1 x + * x -1 - 0 / 1 / - - *]}
-{:generation 54, :best-error 476, :diversity 0.99, :average-size 22.87, :best-genome [x x -1 + x x x + * 1 x + * x -1 - 0 / 1 / - - *]}
-{:generation 55, :best-error 476, :diversity 0.995, :average-size 22.8, :best-genome [x x -1 + x x x + * 1 x + * x -1 - 0 / 1 / - - *]}
-{:generation 56, :best-error 476, :diversity 1.0, :average-size 23.235, :best-genome [x x -1 + x x x + * 1 x + * x -1 - 0 / 1 / - - *]}
-{:generation 57, :best-error 476, :diversity 1.0, :average-size 22.0, :best-genome [-1 + x + x x x + * 1 x + * x -1 - 0 / 1 / / - - *]}
-{:generation 58, :best-error 476, :diversity 1.0, :average-size 21.66, :best-genome [-1 + x + x x x + * 1 x + * x -1 - 0 / 1 / / - - *]}
-{:generation 59, :best-error 476, :diversity 0.995, :average-size 23.295, :best-genome [x x x -1 + x x x + * 1 x + * x -1 - 0 / 1 / / - - *]}
-{:generation 60, :best-error 476, :diversity 1.0, :average-size 24.195, :best-genome [x x -1 + x x x + * 1 x + * x -1 - 0 / 1 * / - - *]}
-{:generation 61, :best-error 476, :diversity 1.0, :average-size 23.98, :best-genome [x x x -1 + x x x + * 1 x + * x -1 - 0 / 1 / / - - *]}
-{:generation 62, :best-error 476, :diversity 1.0, :average-size 23.13, :best-genome [x -1 + x x x + * 1 x + * x -1 - 0 / 1 * - - *]}
-{:generation 63, :best-error 476, :diversity 1.0, :average-size 22.625, :best-genome [x -1 + x x x + * 1 x + * x -1 - 0 / 1 / - - *]}
-{:generation 64, :best-error 476, :diversity 1.0, :average-size 23.9, :best-genome [x -1 + x x x + * 1 x + * x -1 - 0 / 1 / - - *]}
-{:generation 65, :best-error 476, :diversity 0.99, :average-size 22.565, :best-genome [x x -1 + x x x + * 1 x + * x -1 - 0 / 1 / - - *]}
-{:generation 66, :best-error 476, :diversity 1.0, :average-size 22.265, :best-genome [x x -1 + x x x + * 1 x + * x -1 - 0 / 1 / - - *]}
-{:generation 67, :best-error 476, :diversity 1.0, :average-size 22.965, :best-genome [x x -1 + x x x + * 1 x + * x -1 - 0 1 / 1 / - - *]}
-{:generation 68, :best-error 476, :diversity 0.995, :average-size 22.89, :best-genome [x x -1 + x x x + * 1 x + * x -1 0 1 / 1 / + - - *]}
-{:generation 69, :best-error 476, :diversity 0.995, :average-size 23.735, :best-genome [x -1 + x x x + * 1 x + * x -1 0 1 / 1 / + - - *]}
-{:generation 70, :best-error 476, :diversity 1.0, :average-size 22.915, :best-genome [x -1 + x x x + * 1 x + * x -1 0 1 / 1 / + - - *]}
-{:generation 71, :best-error 476, :diversity 1.0, :average-size 22.955, :best-genome [x -1 + x x x + * 1 x + * x -1 0 1 / 1 / + - - *]}
-{:generation 72, :best-error 476, :diversity 1.0, :average-size 22.095, :best-genome [x -1 + x x x + * 1 x + * x -1 0 1 * / 1 / + - - *]}
-{:generation 73, :best-error 476, :diversity 0.995, :average-size 22.095, :best-genome [x -1 + x x x + * 1 x + * x -1 0 1 * / 1 / + - - *]}
-{:generation 74, :best-error 476, :diversity 0.99, :average-size 22.33, :best-genome [x -1 + * x x x + * 1 x + * x -1 0 1 * / 1 * / + - - *]}
-{:generation 75, :best-error 476, :diversity 1.0, :average-size 22.88, :best-genome [x -1 + x x x + * 1 x + * x -1 0 1 * / 1 / + - - *]}
-{:generation 76, :best-error 476, :diversity 1.0, :average-size 23.44, :best-genome [x -1 + * x x x + * 1 x + * x -1 0 1 / 1 * / + - - *]}
-{:generation 77, :best-error 476, :diversity 1.0, :average-size 23.265, :best-genome [x -1 + / x x x + * 1 x + * x -1 - - *]}
-{:generation 78, :best-error 476, :diversity 1.0, :average-size 22.89, :best-genome [x -1 + x x x + * 1 x + * x -1 - - *]}
-{:generation 79, :best-error 476, :diversity 0.99, :average-size 20.985, :best-genome [x -1 + x x x + * 1 x + * x -1 - - *]}
-{:generation 80, :best-error 476, :diversity 1.0, :average-size 19.805, :best-genome [x -1 + x x x + * 1 x + * x -1 - - *]}
-{:generation 81, :best-error 473, :diversity 0.995, :average-size 18.75, :best-genome [x / -1 + / x x x + * 1 x + * x - * -1 - 0 - *]}
-{:generation 82, :best-error 473, :diversity 1.0, :average-size 17.8, :best-genome [x / -1 + / x x x + * 1 x + * x - * -1 - 0 - *]}
-{:generation 83, :best-error 473, :diversity 1.0, :average-size 18.545, :best-genome [x -1 + / x x x + * 1 x + * x - * -1 - 0 -]}
-{:generation 84, :best-error 473, :diversity 1.0, :average-size 18.57, :best-genome [x -1 + / x x x + * 1 x + * x - * -1 - 0 -]}
-{:generation 85, :best-error 473, :diversity 0.99, :average-size 18.575, :best-genome [x -1 + / x x x + * 1 x + * x - * -1 - 0 -]}
-{:generation 86, :best-error 473, :diversity 0.99, :average-size 18.525, :best-genome [x -1 + / x x x + * 1 x + * x - * -1 - 0 -]}
-{:generation 87, :best-error 473, :diversity 0.995, :average-size 18.73, :best-genome [x -1 + / x x x + * 1 x + * x - * -1 - 0 -]}
-{:generation 88, :best-error 473, :diversity 0.995, :average-size 17.455, :best-genome [x -1 + x x x + * 1 x + * x - * -1 - -]}
-{:generation 89, :best-error 473, :diversity 0.995, :average-size 19.025, :best-genome [x -1 + x x x + * 1 x + * x - * -1 - -]}
-{:generation 90, :best-error 473, :diversity 0.985, :average-size 18.685, :best-genome [x - -1 + x x x + * 1 x + * x - * -1 - 0 -]}
-{:generation 91, :best-error 473, :diversity 1.0, :average-size 19.8, :best-genome [x - -1 + x x x + * 1 x + * x - * -1 - 0 -]}
-{:generation 92, :best-error 473, :diversity 1.0, :average-size 18.98, :best-genome [x - -1 + x x x + * 1 x + * x - * -1 - 0 -]}
-{:generation 93, :best-error 473, :diversity 1.0, :average-size 19.145, :best-genome [x - -1 + x x x + * 1 x + * x - * -1 - 0 -]}
-{:generation 94, :best-error 473, :diversity 1.0, :average-size 19.525, :best-genome [x - -1 + x x x + * 1 x + * x - * -1 - 0 -]}
-{:generation 95, :best-error 473, :diversity 1.0, :average-size 20.065, :best-genome [x - -1 + x x x + * 1 x + * x - * -1 - 0 -]}
-{:generation 96, :best-error 473, :diversity 0.99, :average-size 19.6, :best-genome [x - -1 + x x x + * 1 x + * x - * -1 - 0 -]}
-{:generation 97, :best-error 473, :diversity 1.0, :average-size 19.915, :best-genome [x - -1 + x x x + * 1 x + * x - * -1 - 0 -]}
-{:generation 98, :best-error 473, :diversity 1.0, :average-size 20.125, :best-genome [x -1 + - / x x x + * 1 x + * x - * -1 - 0 -]}
-{:generation 99, :best-error 473, :diversity 1.0, :average-size 18.605, :best-genome [x -1 + - / x x x + * 1 x + * x - * -1 - 0 -]}
-{:generation 100, :best-error 473, :diversity 1.0, :average-size 18.95, :best-genome [x -1 + - / x x x + * 1 x + * x - * -1 - 0 -]}
-{:generation 101, :best-error 473, :diversity 0.995, :average-size 20.205, :best-genome [x -1 + - / x x x + * 1 x + * x - * -1 - 0 -]}
-{:generation 102, :best-error 473, :diversity 1.0, :average-size 20.77, :best-genome [x -1 + - x x x + * 1 x + * x - * -1 - 0 - *]}
-{:generation 103, :best-error 473, :diversity 0.985, :average-size 20.485, :best-genome [x -1 + - x x x + * 1 x + * x - * -1 - 0 - *]}
-{:generation 104, :best-error 473, :diversity 1.0, :average-size 19.04, :best-genome [x -1 + - x x x + * 1 x + * x - * -1 - 0 - *]}
-{:generation 105, :best-error 473, :diversity 0.995, :average-size 19.38, :best-genome [x -1 + - x x x + * 1 x + * x - * -1 - 0 - *]}
-{:generation 106, :best-error 473, :diversity 0.995, :average-size 19.8, :best-genome [x -1 + - x x x + * 1 x + * x - * -1 - 0 - *]}
-{:generation 107, :best-error 473, :diversity 1.0, :average-size 20.105, :best-genome [x -1 + - x x x + * 1 x + * x - * -1 - 0 - -]}
-{:generation 108, :best-error 473, :diversity 1.0, :average-size 20.575, :best-genome [x * -1 + x x x + * 1 x + * x - * -1 - 0 - *]}
-{:generation 109, :best-error 473, :diversity 1.0, :average-size 20.485, :best-genome [x -1 + - x x x + * 1 x + * x - * -1 0 - -]}
-{:generation 110, :best-error 473, :diversity 1.0, :average-size 21.335, :best-genome [x -1 + - x x x + * 1 x + * x - * -1 0 - -]}
-{:generation 111, :best-error 473, :diversity 0.98, :average-size 20.67, :best-genome [x -1 + - x x x + * 1 x + * x - * -1 0 - -]}
-{:generation 112, :best-error 473, :diversity 1.0, :average-size 20.225, :best-genome [x -1 + - x x x + * 1 x + * x - * -1 0 - -]}
-{:generation 113, :best-error 473, :diversity 1.0, :average-size 20.005, :best-genome [x -1 + - x x x + * 1 x + * x - * -1 0 - -]}
-{:generation 114, :best-error 473, :diversity 1.0, :average-size 20.635, :best-genome [x -1 + - x x x + * 1 x + * x - * -1 0 - -]}
-{:generation 115, :best-error 473, :diversity 1.0, :average-size 20.73, :best-genome [x -1 + - x x x + * 1 x + * x - * -1 0 - -]}
-{:generation 116, :best-error 473, :diversity 1.0, :average-size 18.205, :best-genome [x -1 + - x x x + * 1 x + * x - * -1 0 - -]}
-{:generation 117, :best-error 473, :diversity 1.0, :average-size 19.515, :best-genome [x -1 + - x x x + * 1 x + * x - * -1 0 - -]}
-{:generation 118, :best-error 473, :diversity 0.995, :average-size 19.925, :best-genome [x -1 + - x x x + * 1 x + * x - * -1 0 - -]}
-{:generation 119, :best-error 473, :diversity 1.0, :average-size 19.56, :best-genome [x / -1 + - x x x + * 1 x + * x - * -1 0 - -]}
-{:generation 120, :best-error 473, :diversity 0.995, :average-size 19.415, :best-genome [x / -1 + - x x x + * 1 x + * x - * -1 0 - -]}
-{:generation 121, :best-error 473, :diversity 1.0, :average-size 19.605, :best-genome [x / -1 + - x x x + * 1 x + * x - * -1 0 - -]}
-{:generation 122, :best-error 473, :diversity 0.995, :average-size 19.965, :best-genome [x / -1 + - x x x + * 1 x + * x - * -1 0 - -]}
-{:generation 123, :best-error 473, :diversity 1.0, :average-size 20.355, :best-genome [x / -1 + - x x x + * 1 x + * x - * -1 0 - -]}
-{:generation 124, :best-error 473, :diversity 1.0, :average-size 20.305, :best-genome [x / -1 + - x x x + * 1 x + * x - * -1 0 - -]}
-{:generation 125, :best-error 473, :diversity 0.99, :average-size 19.585, :best-genome [x / -1 + - x x x + * 1 x + * x - * -1 0 - -]}
-{:generation 126, :best-error 473, :diversity 0.995, :average-size 19.73, :best-genome [x / -1 + - x x x + * 1 x + * x - * -1 0 - -]}
-{:generation 127, :best-error 473, :diversity 1.0, :average-size 20.06, :best-genome [x / -1 + - - * x x x + * 1 x + * x - * -1 0 - - + -]}
-{:generation 128, :best-error 473, :diversity 1.0, :average-size 20.51, :best-genome [x / -1 + - - * x x x + * 1 x + * x - * -1 0 - - + -]}
-{:generation 129, :best-error 471, :diversity 1.0, :average-size 21.695, :best-genome [x / -1 + * - x x x + * 1 x + * x - * -1 -1 + - -]}
-{:generation 130, :best-error 471, :diversity 1.0, :average-size 21.275, :best-genome [x / -1 + * - x x x + * 1 x + * x - * -1 -1 + - -]}
-{:generation 131, :best-error 471, :diversity 1.0, :average-size 21.29, :best-genome [x / -1 + * * - x x x + * 1 x + * x - * -1 -1 + - -]}
-{:generation 132, :best-error 469, :diversity 1.0, :average-size 20.39, :best-genome [x / * -1 + + * - x x x + * 1 x + * x - * -1 -1 + -1 + - / -]}
-{:generation 133, :best-error 469, :diversity 1.0, :average-size 20.95, :best-genome [x / * -1 + + * - x x x + * 1 x + * x - * -1 -1 + -1 + - / -]}
-{:generation 134, :best-error 469, :diversity 1.0, :average-size 23.535, :best-genome [x / * -1 + + * - x x x + * 1 x + * x - * -1 -1 + -1 + - / -]}
-{:generation 135, :best-error 469, :diversity 1.0, :average-size 23.51, :best-genome [x / * -1 + + * - x x x + * 1 x + * x - * -1 -1 + -1 + - / -]}
-{:generation 136, :best-error 469, :diversity 0.995, :average-size 23.1, :best-genome [x / * -1 + + * - x x x + * 1 x + * x - * -1 -1 + -1 + - / -]}
-{:generation 137, :best-error 469, :diversity 1.0, :average-size 21.62, :best-genome [x / * -1 + + * - x x x + * 1 x + * x - * -1 -1 + -1 + - / -]}
-{:generation 138, :best-error 469, :diversity 0.99, :average-size 20.615, :best-genome [x / * -1 + + * - x x x + * 1 x + * x - * -1 -1 + -1 + - / -]}
-{:generation 139, :best-error 469, :diversity 1.0, :average-size 20.905, :best-genome [x / * -1 + + * - x x x + * 1 x + * x - * -1 -1 + -1 + - / -]}
-{:generation 140, :best-error 469, :diversity 1.0, :average-size 23.655, :best-genome [x / * -1 + + * - x x x + * 1 x + * x - * -1 -1 + -1 + - / -]}
-{:generation 141, :best-error 469, :diversity 1.0, :average-size 22.76, :best-genome [x / * -1 + + * - x x x + * 1 x + * x - * -1 -1 + -1 + - / -]}
-{:generation 142, :best-error 469, :diversity 1.0, :average-size 24.56, :best-genome [x / * -1 + + * - x x x + * 1 x + * x - * -1 -1 + -1 + - / -]}
-{:generation 143, :best-error 469, :diversity 1.0, :average-size 24.835, :best-genome [x / * -1 + + * - x x x + * 1 x + * x - * -1 -1 + -1 + - / -]}
-{:generation 144, :best-error 469, :diversity 1.0, :average-size 25.515, :best-genome [x / * -1 + + * - x x x + * 1 x + * x - * -1 -1 + -1 + - / -]}
-{:generation 145, :best-error 469, :diversity 1.0, :average-size 26.26, :best-genome [x / * -1 + + * - x x x + * 1 x + * x - * -1 -1 + -1 + - / -]}
-{:generation 146, :best-error 469, :diversity 1.0, :average-size 25.93, :best-genome [x / * -1 + + * - x x x + * 1 x + * x - * -1 -1 + -1 + - / -]}
-{:generation 147, :best-error 469, :diversity 1.0, :average-size 26.86, :best-genome [x / -1 + + * - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 148, :best-error 469, :diversity 1.0, :average-size 27.39, :best-genome [x / -1 + + * - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 149, :best-error 469, :diversity 1.0, :average-size 25.67, :best-genome [x / -1 + + * - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 150, :best-error 469, :diversity 1.0, :average-size 25.865, :best-genome [x / -1 + + * - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 151, :best-error 469, :diversity 1.0, :average-size 25.13, :best-genome [x / -1 + + * - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 152, :best-error 469, :diversity 0.99, :average-size 23.205, :best-genome [x / -1 + + 1 * - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 153, :best-error 469, :diversity 1.0, :average-size 23.535, :best-genome [x / -1 + + 1 * - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 154, :best-error 469, :diversity 1.0, :average-size 22.57, :best-genome [x / -1 + + 1 * - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 155, :best-error 469, :diversity 0.985, :average-size 23.405, :best-genome [x / -1 + + 1 * - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 156, :best-error 469, :diversity 1.0, :average-size 23.83, :best-genome [x / -1 + + 1 * - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 157, :best-error 469, :diversity 1.0, :average-size 24.285, :best-genome [x / -1 + + 1 * - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 158, :best-error 469, :diversity 1.0, :average-size 23.265, :best-genome [x / -1 + + 1 * - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 159, :best-error 469, :diversity 1.0, :average-size 24.585, :best-genome [x / -1 + + 1 * - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 160, :best-error 469, :diversity 1.0, :average-size 25.1, :best-genome [x / -1 + + 1 * - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 161, :best-error 469, :diversity 1.0, :average-size 24.87, :best-genome [x / -1 + + 1 * - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 162, :best-error 469, :diversity 0.995, :average-size 25.745, :best-genome [x / -1 + + 1 * - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 163, :best-error 469, :diversity 1.0, :average-size 24.685, :best-genome [x / -1 + + 1 * - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 164, :best-error 469, :diversity 1.0, :average-size 25.61, :best-genome [x / -1 + + 1 * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 165, :best-error 469, :diversity 1.0, :average-size 23.895, :best-genome [x / -1 + + 1 * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 166, :best-error 469, :diversity 0.995, :average-size 22.725, :best-genome [x / -1 + + 1 * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 167, :best-error 469, :diversity 1.0, :average-size 24.43, :best-genome [x / -1 + + 1 * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 168, :best-error 469, :diversity 1.0, :average-size 23.86, :best-genome [x / -1 + + 1 * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 169, :best-error 469, :diversity 1.0, :average-size 23.655, :best-genome [x / -1 + + 1 * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 170, :best-error 469, :diversity 1.0, :average-size 23.94, :best-genome [x / -1 + + 1 * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 171, :best-error 469, :diversity 1.0, :average-size 25.595, :best-genome [x / -1 + + 1 * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 172, :best-error 469, :diversity 1.0, :average-size 27.09, :best-genome [x / -1 + + 1 * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 173, :best-error 469, :diversity 1.0, :average-size 28.035, :best-genome [x / -1 + + 1 * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 174, :best-error 469, :diversity 1.0, :average-size 25.99, :best-genome [x / -1 + + 1 * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 175, :best-error 469, :diversity 1.0, :average-size 27.085, :best-genome [x / -1 + + 1 * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 176, :best-error 469, :diversity 1.0, :average-size 28.98, :best-genome [x / -1 + + 1 * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 177, :best-error 469, :diversity 1.0, :average-size 28.445, :best-genome [x / -1 + + 1 * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 178, :best-error 469, :diversity 1.0, :average-size 29.165, :best-genome [x / -1 + + 1 * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 179, :best-error 469, :diversity 1.0, :average-size 27.95, :best-genome [x / -1 + + 1 * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 180, :best-error 469, :diversity 1.0, :average-size 27.655, :best-genome [x / -1 + + 1 * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - /]}
-{:generation 181, :best-error 469, :diversity 1.0, :average-size 28.37, :best-genome [x / -1 + + + x 1 * 0 - x x + * 1 x + * x - * -1 -1 + -1 + - * /]}
-{:generation 182, :best-error 469, :diversity 1.0, :average-size 29.25, :best-genome [x / -1 + + 1 * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - -1 + 1 +]}
-{:generation 183, :best-error 469, :diversity 1.0, :average-size 30.795, :best-genome [x / -1 + 1 * 0 - x x x + * 1 x + * x - * -1 -1 -1 + + - -1 + 1 +]}
-{:generation 184, :best-error 469, :diversity 1.0, :average-size 32.32, :best-genome [x / -1 + + * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - -1 + 1 +]}
-{:generation 185, :best-error 469, :diversity 1.0, :average-size 32.075, :best-genome [x / -1 + + * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - -1 + 1 +]}
-{:generation 186, :best-error 469, :diversity 1.0, :average-size 31.26, :best-genome [x / -1 + + * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - -1 + 1 +]}
-{:generation 187, :best-error 469, :diversity 1.0, :average-size 31.065, :best-genome [x / -1 + + * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - -1 + 1 +]}
-{:generation 188, :best-error 469, :diversity 1.0, :average-size 28.54, :best-genome [x / -1 + + * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - -1 + 1 +]}
-{:generation 189, :best-error 469, :diversity 1.0, :average-size 28.725, :best-genome [x / -1 + + * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - -1 + 1 +]}
-{:generation 190, :best-error 469, :diversity 1.0, :average-size 27.82, :best-genome [x / -1 + + * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - -1 + 1 +]}
-{:generation 191, :best-error 469, :diversity 1.0, :average-size 28.15, :best-genome [x / -1 + + * 0 - x x x + * 1 x + * x - * -1 -1 + -1 + - -1 + 1 +]}
-{:generation 192, :best-error 469, :diversity 1.0, :average-size 27.305, :best-genome [x / -1 + * x x x + * 1 * 1 x + * x - * -1 -1 + -1 + - -1 + 1 +]}
-{:generation 193, :best-error 469, :diversity 1.0, :average-size 28.52, :best-genome [x / -1 + * x x x + * 1 * 1 x + * x - * -1 -1 + -1 + - -1 + 1 +]}
-{:generation 194, :best-error 469, :diversity 1.0, :average-size 28.035, :best-genome [x / -1 + * x x x + * 1 * 1 x + * x - * -1 -1 + -1 + - -1 + 1 +]}
-{:generation 195, :best-error 469, :diversity 1.0, :average-size 26.825, :best-genome [x / -1 + * x x x + * 1 * 1 x + * x - * -1 -1 + -1 + - -1 + 1 +]}
-{:generation 196, :best-error 469, :diversity 1.0, :average-size 26.725, :best-genome [x / -1 + * x x x + * 1 * 1 x + * x - * -1 -1 + -1 + - -1 + 1 +]}
-{:generation 197, :best-error 469, :diversity 1.0, :average-size 26.935, :best-genome [x / -1 + * x x x + * 1 * 1 x + * x - * -1 -1 + -1 + - -1 + 1 +]}
-{:generation 198, :best-error 469, :diversity 1.0, :average-size 26.82, :best-genome [x / -1 + * x x x + * 1 * 1 x + * x - * -1 -1 + -1 + - -1 + 1 +]}
-{:generation 199, :best-error 469, :diversity 1.0, :average-size 25.94, :best-genome [x / -1 + * x x x + * 1 * 1 x + * x - * -1 -1 + -1 + - -1 + 1 +]}
-{:generation 200, :best-error 469, :diversity 1.0, :average-size 24.6, :best-genome [x / -1 + * x x x + * 1 * 1 x + * x - * -1 -1 + -1 + - -1 + 1 +]}
-Found approximation for training cases
-Solution approximate or does not match test cases - Failure!
-Running with only UMAD.
-Run 1 of 1: Running: [:population-size 200 :generations 200 :selection-type :lexicase-selection :crossover? false :crossover-type :single-point-crossover :mutate? true :umad-add-rate 0.09 :umad-del-rate 0.1 :elitism? true]
-{:generation 0, :best-error 29602, :diversity 1.0, :average-size 5.0, :best-genome [+ x x * +]}
-{:generation 1, :best-error 29592, :diversity 0.52, :average-size 4.95, :best-genome [1 + x x * +]}
-{:generation 2, :best-error 29547, :diversity 0.385, :average-size 5.84, :best-genome [1 x + x x * +]}
-{:generation 3, :best-error 27577, :diversity 0.43, :average-size 6.86, :best-genome [1 x + x * x * +]}
-{:generation 4, :best-error 27292, :diversity 0.61, :average-size 7.76, :best-genome [1 1 x + + x * x * +]}
-{:generation 5, :best-error 12529, :diversity 0.685, :average-size 9.41, :best-genome [1 x + + x * x x * * +]}
-{:generation 6, :best-error 1015, :diversity 0.78, :average-size 10.69, :best-genome [x x + + x * + x x * * +]}
-{:generation 7, :best-error 961, :diversity 0.855, :average-size 11.44, :best-genome [-1 x x + + x * 1 + x x * * +]}
-{:generation 8, :best-error 629, :diversity 0.95, :average-size 12.43, :best-genome [-1 x x * + x * 1 1 + x * * +]}
-{:generation 9, :best-error 629, :diversity 0.925, :average-size 13.42, :best-genome [-1 x x * + x * 1 1 + x * * - +]}
-{:generation 10, :best-error 629, :diversity 0.945, :average-size 13.925, :best-genome [-1 x x * + * x * 1 1 + x * * +]}
-{:generation 11, :best-error 629, :diversity 0.945, :average-size 14.125, :best-genome [-1 x x * + x * 1 1 + x * * +]}
-{:generation 12, :best-error 627, :diversity 0.96, :average-size 14.86, :best-genome [-1 x x + x * 1 - + - x x * * * 1 + -]}
-{:generation 13, :best-error 627, :diversity 0.965, :average-size 14.99, :best-genome [-1 x x + x * 1 - + - x x * * * 1 + -]}
-{:generation 14, :best-error 627, :diversity 0.99, :average-size 16.27, :best-genome [-1 x x + x * 1 - + - x x * * * 1 + -]}
-{:generation 15, :best-error 627, :diversity 0.99, :average-size 17.675, :best-genome [-1 x x + x * 1 - + - x x * * * 1 + -]}
-{:generation 16, :best-error 627, :diversity 0.98, :average-size 18.28, :best-genome [-1 x x + x * 1 - + - x x * * * 1 + -]}
-{:generation 17, :best-error 614, :diversity 0.99, :average-size 19.54, :best-genome [-1 x x + x * 1 1 * 1 + - x 1 x * * * x 1 * -]}
-{:generation 18, :best-error 614, :diversity 0.99, :average-size 20.725, :best-genome [-1 x x + x * 1 1 * 1 + - x 1 x * * * x 1 * -]}
-{:generation 19, :best-error 527, :diversity 0.99, :average-size 21.045, :best-genome [x x + x x * 1 1 * 1 + - x 1 * * * 1 * -]}
-{:generation 20, :best-error 518, :diversity 0.995, :average-size 20.43, :best-genome [x x + x x * 1 1 * 1 + - x 1 * * * 1 x - -]}
-{:generation 21, :best-error 518, :diversity 0.99, :average-size 19.245, :best-genome [x x x + x x * 1 1 * 1 + - x 1 * * * 1 x - -]}
-{:generation 22, :best-error 518, :diversity 0.985, :average-size 18.35, :best-genome [x x x + x x * 1 1 * 1 + - x 1 * * * 1 x - -]}
-{:generation 23, :best-error 518, :diversity 1.0, :average-size 18.665, :best-genome [x x x + x x * 1 1 * 1 + - x * * 1 x - -]}
-{:generation 24, :best-error 518, :diversity 0.98, :average-size 16.38, :best-genome [x x x x + x x * 1 1 * 1 + - x 1 * * * 1 x - -]}
-{:generation 25, :best-error 512, :diversity 0.995, :average-size 17.845, :best-genome [x x + x x * 1 1 * 1 + - x 1 * * * 1 -1 x - + - +]}
-{:generation 26, :best-error 512, :diversity 1.0, :average-size 18.51, :best-genome [x x + x x * 1 1 * 1 + - x 1 * * * * x + * -]}
-{:generation 27, :best-error 480, :diversity 0.995, :average-size 20.395, :best-genome [x x + x x * 1 1 * * 1 - x * 1 * * + * x 0 x - * + - +]}
-{:generation 28, :best-error 480, :diversity 0.995, :average-size 21.69, :best-genome [x x + x x * 1 1 * * 1 - x * 1 * * + * x 0 x - * + - +]}
-{:generation 29, :best-error 477, :diversity 0.995, :average-size 21.7, :best-genome [x x + x x * 1 1 * * 1 - x * 1 * * x + * x x * - +]}
-{:generation 30, :best-error 477, :diversity 1.0, :average-size 21.71, :best-genome [x x + x x * 1 1 * * 1 - x * 1 * * x + * x x * - +]}
-{:generation 31, :best-error 477, :diversity 0.99, :average-size 21.48, :best-genome [x x + x x * 1 1 * * 1 - x * 1 * * x + * x x * - +]}
-{:generation 32, :best-error 477, :diversity 0.99, :average-size 21.81, :best-genome [x x + x x * 1 1 * * 1 - x * 1 * * x + * x x * - +]}
-{:generation 33, :best-error 477, :diversity 0.985, :average-size 21.265, :best-genome [x x + x x * 1 1 * * 1 - x * 1 * * x + * x x * - +]}
-{:generation 34, :best-error 473, :diversity 1.0, :average-size 22.065, :best-genome [x x + x x * 1 * 1 - x * 1 * * x + * 1 x x * - + +]}
-{:generation 35, :best-error 473, :diversity 1.0, :average-size 21.525, :best-genome [x x + x x * 1 * 1 - x * 1 * * x + * 1 x x * - + +]}
-{:generation 36, :best-error 473, :diversity 1.0, :average-size 21.77, :best-genome [x x + x x * 1 * 1 - x * 1 * * x + * 1 x x * - + +]}
-{:generation 37, :best-error 473, :diversity 0.995, :average-size 22.26, :best-genome [x x + x x * 1 * 1 - x * 1 * * x + * 1 x x * - + +]}
-{:generation 38, :best-error 473, :diversity 0.995, :average-size 23.65, :best-genome [x x + x x * 1 * 1 - x * 1 * * x + * 1 x x * - +]}
-{:generation 39, :best-error 473, :diversity 1.0, :average-size 23.14, :best-genome [x x + x x * 1 * 1 - x * 1 * * x + * 1 x x * - +]}
-{:generation 40, :best-error 473, :diversity 0.995, :average-size 24.265, :best-genome [x x + x x * 1 * 1 - x * 1 * * x + * 1 x x * - +]}
-{:generation 41, :best-error 473, :diversity 1.0, :average-size 24.78, :best-genome [x x + - x x * 1 * 1 - x * * 1 - * x + - / * x x * - * 1 + 1 +]}
-{:generation 42, :best-error 473, :diversity 0.995, :average-size 25.98, :best-genome [x x + x x * 1 * 1 - x * 1 * * x + * 1 x x * - +]}
-{:generation 43, :best-error 473, :diversity 0.995, :average-size 24.905, :best-genome [x x + x x * 1 * 1 - x * 1 * * x + * 1 x x * - +]}
-{:generation 44, :best-error 473, :diversity 0.995, :average-size 23.89, :best-genome [x x + x x * 1 * 1 - x * 1 * * x + * 1 x x * - +]}
-{:generation 45, :best-error 473, :diversity 0.99, :average-size 24.255, :best-genome [x x + x x * 1 * 1 - x * 1 * * x + * 1 x x * - +]}
-{:generation 46, :best-error 473, :diversity 1.0, :average-size 23.84, :best-genome [x x + x x * 1 * 1 - * x * 1 * * x + * 1 x x * - +]}
-{:generation 47, :best-error 473, :diversity 1.0, :average-size 23.675, :best-genome [x x + x x * 1 * 1 - * x * 1 * * x + * 1 x x * - +]}
-{:generation 48, :best-error 473, :diversity 1.0, :average-size 23.215, :best-genome [x x + x x * 1 * 1 - * x * 1 * * x + * 1 x x * - +]}
-{:generation 49, :best-error 473, :diversity 0.995, :average-size 24.27, :best-genome [x x + x x * 1 * 1 - * x * 1 * * x + * 1 x x * - +]}
-{:generation 50, :best-error 473, :diversity 1.0, :average-size 26.085, :best-genome [x x + x x * 1 * 1 - * x * 1 * * x + * 1 x x * - +]}
-{:generation 51, :best-error 473, :diversity 1.0, :average-size 26.205, :best-genome [x x + x x * 1 * 1 - * x * 1 * * x + * 1 x x * - +]}
-{:generation 52, :best-error 473, :diversity 1.0, :average-size 26.93, :best-genome [x x + x x * 1 * 1 - * x * 1 * * x + * 1 x x * - +]}
-{:generation 53, :best-error 473, :diversity 0.995, :average-size 26.47, :best-genome [x x + x x * 1 * 1 - * x * 1 * * x + * 1 x x * - +]}
-{:generation 54, :best-error 473, :diversity 0.995, :average-size 26.755, :best-genome [x x + x x * 1 * 1 - x * 1 * * x + * 1 x x * - +]}
-{:generation 55, :best-error 473, :diversity 0.995, :average-size 27.43, :best-genome [x x + x x * 1 * 1 - * x * 1 * x + * 1 x x * - +]}
-{:generation 56, :best-error 473, :diversity 1.0, :average-size 28.045, :best-genome [x x + x x * 1 * 1 - * * x * 1 * x + - * 1 x x * - +]}
-{:generation 57, :best-error 473, :diversity 1.0, :average-size 26.93, :best-genome [x x + x x * 1 * 1 - x * 1 * * x + * 1 x x * - +]}
-{:generation 58, :best-error 473, :diversity 0.995, :average-size 25.885, :best-genome [x x + x x * 1 * 1 - x * 1 * * x + * 1 x x * - +]}
-{:generation 59, :best-error 473, :diversity 1.0, :average-size 26.0, :best-genome [x x + x x * 1 * 1 - x * 1 * * x + * 1 x x * - +]}
-{:generation 60, :best-error 473, :diversity 0.995, :average-size 24.74, :best-genome [x x + x x * 1 * 1 - x * 1 * * x + * 1 x x * - +]}
-{:generation 61, :best-error 473, :diversity 1.0, :average-size 24.055, :best-genome [x x + x x * 1 * 1 - x * 1 * * x + * 1 x x * - +]}
-{:generation 62, :best-error 473, :diversity 0.995, :average-size 23.99, :best-genome [x x + x x * 1 * 1 - x * 1 * * x + * 1 x x * - +]}
-{:generation 63, :best-error 473, :diversity 0.98, :average-size 22.73, :best-genome [x x + x x * 1 * 1 - x * 1 * * x + * 1 x x * - +]}
-{:generation 64, :best-error 473, :diversity 0.995, :average-size 22.775, :best-genome [x x + x x * 1 * 1 - x * 1 * * x + * 1 x x * - +]}
-{:generation 65, :best-error 473, :diversity 0.995, :average-size 22.56, :best-genome [x x + x x * 1 * 1 - x * 1 * * x + * 1 x x * - +]}
-{:generation 66, :best-error 473, :diversity 0.995, :average-size 22.42, :best-genome [x x + x x * 1 * 1 - x * 1 * * x + * 1 x x * - +]}
-{:generation 67, :best-error 473, :diversity 0.995, :average-size 23.99, :best-genome [x x + x x * 1 - x * 1 * * x + * 1 x x * - +]}
-{:generation 68, :best-error 473, :diversity 0.98, :average-size 21.495, :best-genome [x x + x x * 1 - x * 1 * * x + * 1 x x * - +]}
-{:generation 69, :best-error 473, :diversity 0.98, :average-size 23.205, :best-genome [x / x + x x * 1 - x * 1 * * x + * 1 x x * - + *]}
-{:generation 70, :best-error 473, :diversity 0.985, :average-size 23.6, :best-genome [x x + x x * 1 - x * * 1 * x + * 1 x x * - +]}
-{:generation 71, :best-error 473, :diversity 0.995, :average-size 23.905, :best-genome [x x + x x * 1 - x * * 1 * x + * 1 x x * - +]}
-{:generation 72, :best-error 473, :diversity 0.995, :average-size 25.595, :best-genome [x x + x x * 1 - x * * 1 * x + * 1 x x * - +]}
-{:generation 73, :best-error 473, :diversity 1.0, :average-size 26.94, :best-genome [x x + x x * 1 - x * * - 1 * x + * 1 x x * - +]}
-{:generation 74, :best-error 473, :diversity 1.0, :average-size 24.32, :best-genome [x x + x x * 1 - x * * - 1 * x + * 1 x x * - +]}
-{:generation 75, :best-error 473, :diversity 0.995, :average-size 24.09, :best-genome [x x + x x * 1 - x * * - 1 * x + * 1 x x * - +]}
-{:generation 76, :best-error 473, :diversity 1.0, :average-size 24.615, :best-genome [x x + x x * 1 - x * * - 1 * x + * 1 x x * - +]}
-{:generation 77, :best-error 473, :diversity 0.985, :average-size 24.65, :best-genome [x x + x x * 1 - x * * - 1 * x + * 1 x x * - +]}
-{:generation 78, :best-error 473, :diversity 0.995, :average-size 23.54, :best-genome [x x + / x x * 1 - x * * - 1 * x + * 1 x x * - +]}
-{:generation 79, :best-error 473, :diversity 0.995, :average-size 23.495, :best-genome [x x + x x * 1 - x * * - 1 * x + * 1 x x * - +]}
-{:generation 80, :best-error 473, :diversity 0.995, :average-size 23.395, :best-genome [x x + x x * 1 - x * * - 1 * x + * 1 x x * - +]}
-{:generation 81, :best-error 473, :diversity 1.0, :average-size 21.99, :best-genome [x x + x x * 1 - x * * - 1 * x + * 1 x x * - +]}
-{:generation 82, :best-error 473, :diversity 1.0, :average-size 22.29, :best-genome [x x + x x * 1 - x * * - 1 * x + * 1 x x * - +]}
-{:generation 83, :best-error 473, :diversity 0.99, :average-size 20.445, :best-genome [x x + x x * 1 - x * * - 1 * x + * 1 x x * - +]}
-{:generation 84, :best-error 473, :diversity 0.99, :average-size 21.725, :best-genome [x x + x x * 1 - x * * - 1 * x + * 1 x x * - +]}
-{:generation 85, :best-error 473, :diversity 0.995, :average-size 25.095, :best-genome [x x x + x x * 1 - x * * + - 1 + * + x x * -]}
-{:generation 86, :best-error 473, :diversity 0.97, :average-size 23.965, :best-genome [x x x + x x * 1 - x * * + - 1 + + x x 1 * * -]}
-{:generation 87, :best-error 473, :diversity 0.99, :average-size 23.085, :best-genome [x x x + x x * 1 - x * * + - 1 1 / + + x x 1 * * -]}
-{:generation 88, :best-error 473, :diversity 0.985, :average-size 22.305, :best-genome [x x x + x x * 1 - x * * + - 1 1 / + + x x 1 * * -]}
-{:generation 89, :best-error 473, :diversity 0.99, :average-size 22.735, :best-genome [x / x x + x x * 1 - x * * + - 1 1 / + + x x 1 * * -]}
-{:generation 90, :best-error 473, :diversity 1.0, :average-size 22.555, :best-genome [x x x + x x * 1 - x * * + - 1 1 / + + x x 1 * * -]}
-{:generation 91, :best-error 473, :diversity 0.995, :average-size 21.645, :best-genome [x x x + x x * 1 - x * * + - 1 1 / + + x x 1 * * -]}
-{:generation 92, :best-error 473, :diversity 0.99, :average-size 20.445, :best-genome [x x x + x x * 1 - x * * + - 1 1 / + + x x 1 * * -]}
-{:generation 93, :best-error 473, :diversity 0.975, :average-size 20.965, :best-genome [x x x + x x * 1 - x * * + - 1 1 / + + x x 1 * * -]}
-{:generation 94, :best-error 473, :diversity 0.995, :average-size 21.51, :best-genome [x x x + x x * 1 - x * * + - 1 1 / + + x x 1 * * -]}
-{:generation 95, :best-error 473, :diversity 1.0, :average-size 22.175, :best-genome [x x x + x x * 1 - x * * + - 1 1 / + x x 1 * * -]}
-{:generation 96, :best-error 473, :diversity 0.995, :average-size 23.18, :best-genome [x x x + x x * 1 - x * * + - 1 1 / + x x 1 * * -]}
-{:generation 97, :best-error 473, :diversity 0.985, :average-size 21.945, :best-genome [x x x + x x * 1 - x * * + - 1 1 / + x x 1 * * -]}
-{:generation 98, :best-error 473, :diversity 0.975, :average-size 19.255, :best-genome [x x x + x x * 1 - x * * + - 1 1 / + x x * 1 * -]}
-{:generation 99, :best-error 473, :diversity 0.985, :average-size 20.55, :best-genome [x x x + x x * 1 - x * * + - 1 1 / + x x * 1 * -]}
-{:generation 100, :best-error 473, :diversity 1.0, :average-size 23.425, :best-genome [x x x + x x * 1 - x * * + - 1 1 / + x x * 1 * -]}
-{:generation 101, :best-error 473, :diversity 0.995, :average-size 23.94, :best-genome [x x x + x x * 1 - x * * + - 1 1 / + x x * 1 * -]}
-{:generation 102, :best-error 471, :diversity 0.995, :average-size 22.76, :best-genome [x 1 - x + + * - x * -1 - 1 + * x * x + / * * x *]}
-{:generation 103, :best-error 471, :diversity 0.995, :average-size 23.645, :best-genome [x 1 - x + + * - x * -1 - 1 + * x * x + / * * x *]}
-{:generation 104, :best-error 471, :diversity 0.995, :average-size 23.795, :best-genome [x 1 - x + + * - x * -1 - 1 + * x * x + / * * x *]}
-{:generation 105, :best-error 471, :diversity 0.99, :average-size 24.055, :best-genome [x 1 - * x + - + * - * x * / -1 - 1 + * x * x + * * x *]}
-{:generation 106, :best-error 471, :diversity 1.0, :average-size 25.05, :best-genome [x 1 - x + + * - x * -1 - 1 + x * x + / * - + x *]}
-{:generation 107, :best-error 471, :diversity 0.99, :average-size 24.095, :best-genome [x 1 - x + + + * - x * -1 - 1 + + x * x + / * - + x *]}
-{:generation 108, :best-error 471, :diversity 1.0, :average-size 24.335, :best-genome [x 1 - * * x + - + * - * x * / -1 - 1 + * x * x + * * x *]}
-{:generation 109, :best-error 471, :diversity 0.995, :average-size 23.21, :best-genome [x 1 - * * * x + - * - 1 * x * / -1 - 1 + * x * x + * * x *]}
-{:generation 110, :best-error 471, :diversity 0.995, :average-size 23.095, :best-genome [x 1 - * * * x + - * - 1 * x * / -1 - 1 + * x * x + x *]}
-{:generation 111, :best-error 471, :diversity 0.99, :average-size 23.215, :best-genome [x 1 - * * * x + - + * 1 * x * / -1 - 1 + * x * x + * x *]}
-{:generation 112, :best-error 452, :diversity 0.995, :average-size 23.88, :best-genome [x 1 - * * * x + / - + * * x * / -1 - 1 + * x * x -1 - + * + x *]}
-{:generation 113, :best-error 452, :diversity 0.995, :average-size 22.97, :best-genome [x 1 - * * * x + / - + * * x * / -1 - 1 + * x * x -1 - + * + x *]}
-{:generation 114, :best-error 452, :diversity 1.0, :average-size 23.315, :best-genome [x 1 - * * * x + / - + * * x * / -1 - 1 + * x * x -1 - + * + x *]}
-{:generation 115, :best-error 452, :diversity 0.995, :average-size 23.515, :best-genome [x 1 - * * * x + / - + * - * x * / -1 - 1 + * x * x -1 - + * x *]}
-{:generation 116, :best-error 452, :diversity 0.99, :average-size 23.125, :best-genome [x 1 - + * x + / - + * - * x * / -1 - 1 + * x * x -1 - + * x *]}
-{:generation 117, :best-error 452, :diversity 1.0, :average-size 24.015, :best-genome [x 1 - + * x + / - * - * x * / -1 - 1 + * x * x -1 - + * x *]}
-{:generation 118, :best-error 452, :diversity 0.99, :average-size 23.235, :best-genome [x 1 - + * x + / - + * - * x * -1 - 1 + * x * x -1 - + x *]}
-{:generation 119, :best-error 452, :diversity 0.995, :average-size 23.885, :best-genome [x 1 - + * x + / - * - * x * / -1 - 1 + * x * x -1 - + * * x *]}
-{:generation 120, :best-error 452, :diversity 0.995, :average-size 24.42, :best-genome [x 1 - * x + / - + / * - * x * -1 - 1 + * x * x -1 - + x *]}
-{:generation 121, :best-error 452, :diversity 1.0, :average-size 22.885, :best-genome [/ x 1 - + * x + / - * - * x * / -1 - 1 + * x 1 * * x -1 - + * / * x *]}
-{:generation 122, :best-error 452, :diversity 0.985, :average-size 23.645, :best-genome [/ x 1 - + * x + / - * - * x * / -1 - 1 + * x 1 * * x -1 - + * / * x *]}
-{:generation 123, :best-error 452, :diversity 0.99, :average-size 23.675, :best-genome [/ x 1 - + * x + / - * - * x * / -1 - 1 + * x 1 * * x -1 - + * / * x *]}
-{:generation 124, :best-error 452, :diversity 0.985, :average-size 25.035, :best-genome [/ x 1 - + * x + / - * - * x * / -1 - 1 + x 1 * * x -1 - + * / * x *]}
-{:generation 125, :best-error 452, :diversity 1.0, :average-size 25.435, :best-genome [/ x 1 - + x + / - * - * x * / -1 - 1 + x 1 * * x -1 - + * / * x *]}
-{:generation 126, :best-error 452, :diversity 0.985, :average-size 25.58, :best-genome [/ x 1 - + x + / - * - * x * / -1 - 1 + x 1 * * x -1 - + * / * x *]}
-{:generation 127, :best-error 452, :diversity 0.995, :average-size 25.585, :best-genome [x - x + / 1 - - + - / * / x * -1 - 1 + x * * -1 x - - x *]}
-{:generation 128, :best-error 452, :diversity 0.99, :average-size 25.075, :best-genome [x - x + / 1 - - + - / * / x * -1 - 1 + x * * -1 x - - x *]}
-{:generation 129, :best-error 452, :diversity 1.0, :average-size 25.135, :best-genome [x - x + / 1 - - + - / * / x * -1 - 1 + x * * -1 x - - x *]}
-{:generation 130, :best-error 452, :diversity 1.0, :average-size 24.25, :best-genome [x - x + / 1 - - + - / * / x * -1 - 1 + x * * -1 x - - x *]}
-{:generation 131, :best-error 452, :diversity 1.0, :average-size 25.655, :best-genome [x - x + / 1 - - + - / * / x * -1 - 1 + x * * -1 x - - x *]}
-{:generation 132, :best-error 452, :diversity 0.995, :average-size 25.005, :best-genome [x - x + / 1 - - + - / * / x * -1 - 1 + x * * -1 x - - x *]}
-{:generation 133, :best-error 452, :diversity 1.0, :average-size 24.13, :best-genome [x x + / 1 - - / * / / x * -1 - 1 + x * * -1 x - - x *]}
-{:generation 134, :best-error 452, :diversity 0.99, :average-size 24.12, :best-genome [x * - x + / 1 - - - * / x * -1 - 1 + x * * -1 x - - x *]}
-{:generation 135, :best-error 452, :diversity 1.0, :average-size 23.8, :best-genome [x - x + / 1 - / * / x * -1 - 1 + x * * -1 x - - + x *]}
-{:generation 136, :best-error 452, :diversity 0.995, :average-size 23.665, :best-genome [x x + / 1 - - * / x * * -1 - 1 + x * * -1 x - - x *]}
-{:generation 137, :best-error 452, :diversity 0.98, :average-size 22.315, :best-genome [x x + / 1 - - * / x * * -1 - 1 + x * * -1 x - - x *]}
-{:generation 138, :best-error 452, :diversity 0.99, :average-size 22.81, :best-genome [x x + / 1 - * x * -1 - - 1 + x 1 * * - -1 x - - x *]}
-{:generation 139, :best-error 452, :diversity 1.0, :average-size 22.825, :best-genome [x x + / 1 - - * / x * * -1 - 1 + x * * -1 x - - x *]}
-{:generation 140, :best-error 452, :diversity 0.995, :average-size 22.88, :best-genome [x x + / 1 - * x * -1 - 1 + x 1 * * - -1 x - - x *]}
-{:generation 141, :best-error 452, :diversity 1.0, :average-size 22.86, :best-genome [x x + / 1 - * x * -1 - 1 + x 1 * * - -1 x - - x *]}
-{:generation 142, :best-error 452, :diversity 0.99, :average-size 23.02, :best-genome [x x + / 1 - * x * -1 - 1 + x 1 * * - -1 x - - x *]}
-{:generation 143, :best-error 452, :diversity 1.0, :average-size 23.15, :best-genome [x x + / 1 - * x * -1 - 1 + x 1 * * - -1 x - - x *]}
-{:generation 144, :best-error 451, :diversity 1.0, :average-size 22.875, :best-genome [+ x / x + / * 1 - * / x * * -1 - 1 + x x * 1 -1 + x x -1 + - - - *]}
-{:generation 145, :best-error 451, :diversity 0.975, :average-size 22.725, :best-genome [+ x / x + / * 1 - * / x * * -1 - 1 + x x * 1 -1 + x x -1 + - - - *]}
-{:generation 146, :best-error 451, :diversity 1.0, :average-size 23.845, :best-genome [+ x / x + / * 1 - * / x * * -1 - 1 + x x * 1 -1 + x x -1 + - - - *]}
-{:generation 147, :best-error 451, :diversity 0.995, :average-size 25.3, :best-genome [+ x / x + / * 1 - * / x * * -1 - 1 + x x * 1 -1 + x x -1 + - - - *]}
-{:generation 148, :best-error 451, :diversity 1.0, :average-size 24.59, :best-genome [+ x / x + / * 1 - * / x * * -1 - 1 + x x * 1 -1 + x x -1 + - - - *]}
-{:generation 149, :best-error 451, :diversity 0.99, :average-size 24.545, :best-genome [+ x / x + / * 1 - * / x * * -1 - 1 + x x * 1 -1 + x x -1 + - - - *]}
-{:generation 150, :best-error 451, :diversity 0.995, :average-size 25.2, :best-genome [+ x / x + / * 1 - * / x * * -1 - 1 + x x * 1 -1 + x x -1 + - - - *]}
-{:generation 151, :best-error 451, :diversity 0.995, :average-size 25.235, :best-genome [+ x / x + / * 1 - * / x * * -1 - 1 + x x * 1 -1 + x x -1 + - - - *]}
-{:generation 152, :best-error 451, :diversity 1.0, :average-size 25.24, :best-genome [+ x / x + / * 1 - * / x * * -1 - 1 + x x * 1 -1 + x x -1 + - - - *]}
-{:generation 153, :best-error 451, :diversity 0.995, :average-size 25.74, :best-genome [+ x / x + / * 1 - * / x * * -1 - 1 + x x * 1 -1 + x x -1 + - - - *]}
-{:generation 154, :best-error 435, :diversity 1.0, :average-size 25.235, :best-genome [-1 x x + + - * - * / x * -1 - + 1 + x * 1 x + + * + -1 - x *]}
-{:generation 155, :best-error 435, :diversity 0.995, :average-size 26.15, :best-genome [-1 x x + + - * - * / x * -1 - + 1 + x * 1 x + + * + -1 - x *]}
-{:generation 156, :best-error 435, :diversity 1.0, :average-size 25.525, :best-genome [-1 x x + + - * - * / x * -1 - + 1 + x * 1 x + + * + -1 - x *]}
-{:generation 157, :best-error 435, :diversity 1.0, :average-size 26.205, :best-genome [-1 x x + + - * 1 * / * x * -1 - + 1 + x * 1 x + + + * + -1 - x *]}
-{:generation 158, :best-error 435, :diversity 1.0, :average-size 26.66, :best-genome [-1 x + x + + * * / x * -1 - + 1 + x * 1 x + + * + -1 - - x *]}
-{:generation 159, :best-error 435, :diversity 0.995, :average-size 25.89, :best-genome [-1 x x + + - * * / x * -1 - + 1 + x * 1 x + + * + -1 - x *]}
-{:generation 160, :best-error 435, :diversity 1.0, :average-size 25.53, :best-genome [-1 x + x + / + * * / x * -1 - + 1 + x * 1 x + + * + -1 - + - x *]}
-{:generation 161, :best-error 435, :diversity 0.99, :average-size 27.345, :best-genome [-1 x x + + - * * / * x * -1 - 1 + x * 1 x + + * -1 - x *]}
-{:generation 162, :best-error 435, :diversity 0.995, :average-size 25.72, :best-genome [-1 x + x + / + * * / x * -1 - + 1 + x * 1 x + + * + -1 - + - 1 * x *]}
-{:generation 163, :best-error 435, :diversity 1.0, :average-size 25.915, :best-genome [-1 x + x + / + * * / x * / -1 - + 1 + x * 1 x + + * + -1 - + - * x *]}
-{:generation 164, :best-error 435, :diversity 1.0, :average-size 26.13, :best-genome [-1 x + x + / + * * / x * / -1 - + 1 + x * 1 x + + * + -1 - + - * x *]}
-{:generation 165, :best-error 435, :diversity 0.995, :average-size 25.46, :best-genome [-1 x + x + / + * * / x * / -1 - + 1 + x * 1 x + + * + -1 - + - * x *]}
-{:generation 166, :best-error 435, :diversity 1.0, :average-size 27.11, :best-genome [-1 x + x + / + * * / x * / -1 - + 1 + x * 1 x + + * + -1 - + - * x *]}
-{:generation 167, :best-error 435, :diversity 1.0, :average-size 26.685, :best-genome [-1 x + x + / + * * / x * / -1 - + 1 + x * 1 x + + * + -1 - + - * x *]}
-{:generation 168, :best-error 435, :diversity 1.0, :average-size 27.075, :best-genome [-1 x + x + / + * * / x * / -1 - + 1 + x * 1 x + + * + -1 - + - * x *]}
-{:generation 169, :best-error 435, :diversity 0.995, :average-size 27.275, :best-genome [-1 x + x + / + * * / x * / -1 - + 1 + x * 1 x + + * + -1 - + - * x *]}
-{:generation 170, :best-error 432, :diversity 0.995, :average-size 24.735, :best-genome [-1 x + + / + 1 * * / x * / -1 - + 1 + x 1 x + + * + -1 - + - * x *]}
-{:generation 171, :best-error 432, :diversity 1.0, :average-size 25.365, :best-genome [-1 x + + / + 1 * * / x * / -1 - + 1 + x 1 x + + * + -1 - + - * x *]}
-{:generation 172, :best-error 432, :diversity 1.0, :average-size 26.375, :best-genome [-1 x + + / + 1 * * / x * / -1 - + 1 + x 1 x + + * + -1 - + - * x *]}
-{:generation 173, :best-error 432, :diversity 1.0, :average-size 30.93, :best-genome [-1 x + + / + 1 * * / x * / -1 - + 1 + x 1 x + + * + -1 - + - * x *]}
-{:generation 174, :best-error 432, :diversity 1.0, :average-size 30.74, :best-genome [-1 x + + / + 1 * * / * x * / -1 - 1 + x 1 x + + * + -1 - + - * x *]}
-{:generation 175, :best-error 429, :diversity 0.995, :average-size 29.985, :best-genome [-1 x + / + 1 * / * x * / -1 - 1 + x 1 x + + * 1 + -1 - - + x *]}
-{:generation 176, :best-error 429, :diversity 1.0, :average-size 31.4, :best-genome [-1 x + / + 1 * / * x * / -1 - 1 + x 1 x + + * 1 + -1 - - + x *]}
-{:generation 177, :best-error 429, :diversity 0.995, :average-size 31.355, :best-genome [-1 x + / + 1 * / * x * / -1 - 1 + x 1 x + + * 1 + -1 - - + x *]}
-{:generation 178, :best-error 429, :diversity 1.0, :average-size 31.13, :best-genome [-1 x + / + 1 * / * x * / -1 - 1 + x 1 x + + * 1 + -1 - - + x *]}
-{:generation 179, :best-error 429, :diversity 1.0, :average-size 32.055, :best-genome [-1 x + / + 1 * / x * / -1 - * 1 + x 1 x + + * 1 + -1 - - + x *]}
-{:generation 180, :best-error 429, :diversity 1.0, :average-size 31.875, :best-genome [-1 / x + / + 1 * / * x * -1 - 1 + x 1 x + + * 1 + -1 - - + x *]}
-{:generation 181, :best-error 429, :diversity 1.0, :average-size 31.09, :best-genome [-1 x + / + 1 * / / x * / -1 - * 1 + x 1 x + + * 1 + -1 - + x *]}
-{:generation 182, :best-error 429, :diversity 1.0, :average-size 30.99, :best-genome [-1 x + / + 1 * / x * / -1 - * 1 + x 1 x + + * 1 + -1 - + x *]}
-{:generation 183, :best-error 429, :diversity 1.0, :average-size 31.41, :best-genome [-1 x + / + 1 * / x * / -1 - * 1 + x 1 x + + * 1 + -1 - + x *]}
-{:generation 184, :best-error 429, :diversity 1.0, :average-size 31.6, :best-genome [-1 x + / + 1 * / x * / -1 - * 1 + x 1 x + + * 1 + -1 - + x *]}
-{:generation 185, :best-error 429, :diversity 1.0, :average-size 30.65, :best-genome [-1 x + / + 1 * / x * / -1 - * 1 + x 1 x + + * 1 + -1 - + x *]}
-{:generation 186, :best-error 429, :diversity 1.0, :average-size 28.9, :best-genome [-1 x + / + 1 * / x * / -1 - * 1 + x 1 x + + * 1 + -1 - + x *]}
-{:generation 187, :best-error 429, :diversity 1.0, :average-size 28.195, :best-genome [-1 x + / + 1 * / x * / -1 - * 1 + x 1 x + + * 1 + -1 - + x *]}
-{:generation 188, :best-error 429, :diversity 0.995, :average-size 25.145, :best-genome [-1 x + / + 1 * / x * / -1 - * 1 + x 1 x + + * 1 + -1 - + x *]}
-{:generation 189, :best-error 429, :diversity 1.0, :average-size 24.89, :best-genome [-1 x + / + 1 * / x * / -1 - * 1 + x 1 x + + * 1 + -1 - + x *]}
-{:generation 190, :best-error 429, :diversity 1.0, :average-size 25.975, :best-genome [-1 x + / + 1 * / x * / -1 - * * 1 + x 1 x + + * 1 + -1 - x *]}
-{:generation 191, :best-error 429, :diversity 1.0, :average-size 26.34, :best-genome [-1 x + / + - 1 / x * / -1 - 1 + x 1 x + + * 1 + -1 - + * x *]}
-{:generation 192, :best-error 429, :diversity 1.0, :average-size 24.065, :best-genome [-1 x + / + - 1 / x * / -1 - 1 + x 1 x + + * 1 + -1 - + * x *]}
-{:generation 193, :best-error 429, :diversity 0.995, :average-size 23.09, :best-genome [-1 x + / + - 1 / x * / -1 - 1 + x 1 x + + * 1 + -1 - + * x *]}
-{:generation 194, :best-error 429, :diversity 0.99, :average-size 23.91, :best-genome [-1 x + / + - 1 / x * / -1 - 1 + x 1 x + + * 1 + -1 - + * x *]}
-{:generation 195, :best-error 429, :diversity 0.995, :average-size 23.815, :best-genome [-1 x + - / x * * -1 - 1 + x 1 x + + * x * x + - -1 + x -1 - +]}
-{:generation 196, :best-error 429, :diversity 0.995, :average-size 23.945, :best-genome [-1 x + - / x * * -1 - 1 + x 1 x + + * x * x + - -1 + x -1 - +]}
-{:generation 197, :best-error 429, :diversity 1.0, :average-size 24.81, :best-genome [-1 x + - / x * * -1 - 1 + x 1 x + + * x * x + - -1 + x -1 - +]}
-{:generation 198, :best-error 429, :diversity 1.0, :average-size 25.235, :best-genome [-1 x + - / x * -1 - 1 + x 1 x + + * x * x + - -1 + x -1 - +]}
-{:generation 199, :best-error 429, :diversity 0.985, :average-size 23.74, :best-genome [-1 x + - / x * -1 - 1 + x 1 x + + * x * x + - -1 + x -1 - +]}
-{:generation 200, :best-error 429, :diversity 1.0, :average-size 23.97, :best-genome [-1 x + - / x * -1 - 1 + x 1 x + + * x * x + - -1 + x -1 - +]}
-Found approximation for training cases
-Solution approximate or does not match test cases - Failure!
+{:generation 0, :best-error 29602, :diversity 0.995, :average-size 5.0, :best-genome [x 0 - x *]}
+{:generation 1, :best-error 29317, :diversity 0.49, :average-size 4.935, :best-genome [x x + x *]}
+{:generation 2, :best-error 27577, :diversity 0.445, :average-size 4.95, :best-genome [x 1 x + x * *]}
+{:generation 3, :best-error 25837, :diversity 0.595, :average-size 6.69, :best-genome [x x x + x * *]}
+{:generation 4, :best-error 14554, :diversity 0.55, :average-size 6.83, :best-genome [x x x x * x * *]}
+{:generation 5, :best-error 1015, :diversity 0.625, :average-size 7.705, :best-genome [x x x + x * x * *]}
+{:generation 6, :best-error 1015, :diversity 0.805, :average-size 8.8, :best-genome [x x x + x * * x * *]}
+{:generation 7, :best-error 1015, :diversity 0.95, :average-size 10.48, :best-genome [x x x + x * x * *]}
+{:generation 8, :best-error 1015, :diversity 0.955, :average-size 11.055, :best-genome [x x x + x * x * * * * *]}
+{:generation 9, :best-error 1015, :diversity 0.98, :average-size 11.235, :best-genome [x x x + * * x * x *]}
+{:generation 10, :best-error 1015, :diversity 0.98, :average-size 11.245, :best-genome [x x x + x * x * * * * /]}
+{:generation 11, :best-error 1015, :diversity 0.98, :average-size 11.065, :best-genome [x * x + * + * x * x * x *]}
+{:generation 12, :best-error 1015, :diversity 0.98, :average-size 11.05, :best-genome [x x x * x x + * * * *]}
+{:generation 13, :best-error 804, :diversity 0.955, :average-size 11.615, :best-genome [x x x x x + * x * -1 x * + x *]}
+{:generation 14, :best-error 804, :diversity 0.935, :average-size 13.43, :best-genome [x x x x + * x * -1 x * + x *]}
+{:generation 15, :best-error 804, :diversity 0.98, :average-size 13.87, :best-genome [x -1 x x x x + * x * -1 x * + *]}
+{:generation 16, :best-error 629, :diversity 0.99, :average-size 13.92, :best-genome [x x + x x * x * -1 x * + *]}
+{:generation 17, :best-error 629, :diversity 0.98, :average-size 13.88, :best-genome [x x x + x x * x * -1 x * + *]}
+{:generation 18, :best-error 629, :diversity 0.97, :average-size 13.89, :best-genome [x x x + x x x * x -1 x * / + * *]}
+{:generation 19, :best-error 629, :diversity 0.99, :average-size 14.01, :best-genome [x x + * x x * x * -1 x * + *]}
+{:generation 20, :best-error 629, :diversity 0.975, :average-size 14.165, :best-genome [x x + x x * x * -1 x * + *]}
+{:generation 21, :best-error 629, :diversity 0.99, :average-size 14.475, :best-genome [x 1 x x + x x * x * -1 x * + *]}
+{:generation 22, :best-error 629, :diversity 0.995, :average-size 14.775, :best-genome [x x + * x x x * x -1 x * / + * *]}
+{:generation 23, :best-error 629, :diversity 0.995, :average-size 14.855, :best-genome [x x + x x * x * -1 x * + *]}
+{:generation 24, :best-error 629, :diversity 0.985, :average-size 14.82, :best-genome [x x + * x x x * x -1 x * / + * * *]}
+{:generation 25, :best-error 629, :diversity 1.0, :average-size 15.38, :best-genome [x x + x x * x * -1 x * + *]}
+{:generation 26, :best-error 629, :diversity 0.985, :average-size 15.575, :best-genome [x x + + x x * x * -1 x * + * - 1 /]}
+{:generation 27, :best-error 629, :diversity 0.985, :average-size 15.31, :best-genome [x x + x x * x * -1 x * + * - / +]}
+{:generation 28, :best-error 599, :diversity 0.99, :average-size 15.905, :best-genome [x x + x x * x * -1 x - + * - - / 1 * /]}
+{:generation 29, :best-error 599, :diversity 1.0, :average-size 16.935, :best-genome [x x + x x * x * -1 x - + * - - / *]}
+{:generation 30, :best-error 599, :diversity 0.995, :average-size 18.87, :best-genome [x x + * x x * x * -1 x - + * - - *]}
+{:generation 31, :best-error 599, :diversity 1.0, :average-size 17.32, :best-genome [x x + x x * x * -1 x - + * +]}
+{:generation 32, :best-error 599, :diversity 0.995, :average-size 17.485, :best-genome [x x + x x * x * -1 x - + * +]}
+{:generation 33, :best-error 599, :diversity 0.975, :average-size 16.165, :best-genome [x x + x x * x * -1 x - + * +]}
+{:generation 34, :best-error 599, :diversity 0.97, :average-size 16.56, :best-genome [x x + x x * x * -1 x - + * +]}
+{:generation 35, :best-error 597, :diversity 0.99, :average-size 17.08, :best-genome [* x x + x x * x * -1 x - + * - * - -1 - * *]}
+{:generation 36, :best-error 584, :diversity 1.0, :average-size 17.225, :best-genome [x x + x x * x * -1 x - + * - * - + * x - *]}
+{:generation 37, :best-error 584, :diversity 0.99, :average-size 18.8, :best-genome [x x + x x * x * -1 x - + * - - + * x - *]}
+{:generation 38, :best-error 584, :diversity 1.0, :average-size 18.64, :best-genome [x x + x x * x * -1 x - + * * * - + * x - *]}
+{:generation 39, :best-error 584, :diversity 0.995, :average-size 18.925, :best-genome [x x + x x * x * -1 x - + * * * - + * x - *]}
+{:generation 40, :best-error 477, :diversity 1.0, :average-size 19.205, :best-genome [x x + x x * x + * * + * * x - * -1 * * 1 x - *]}
+{:generation 41, :best-error 476, :diversity 0.995, :average-size 20.305, :best-genome [x x + x x * x + * * -1 + * * x - * -1 * * * 1 x - *]}
+{:generation 42, :best-error 476, :diversity 0.985, :average-size 20.615, :best-genome [x x + x x * x + * * -1 + * * x - * -1 * * * 1 x - *]}
+{:generation 43, :best-error 476, :diversity 1.0, :average-size 20.445, :best-genome [x x + x x * x + * - * -1 + * * x - 1 -1 * * 1 x - *]}
+{:generation 44, :best-error 476, :diversity 0.995, :average-size 20.37, :best-genome [x x + x x * x + * * -1 + * * - x - * -1 * * * 1 x - *]}
+{:generation 45, :best-error 476, :diversity 1.0, :average-size 22.57, :best-genome [x x + x x * x + * * - -1 + * * - x - * -1 * * * 1 x - *]}
+{:generation 46, :best-error 476, :diversity 0.995, :average-size 22.975, :best-genome [x x + x x * x + * * - -1 + * * - x - * -1 * * * 1 x - *]}
+{:generation 47, :best-error 476, :diversity 1.0, :average-size 23.185, :best-genome [x x + x x * x + * -1 + * * - x - * -1 * * * 1 x - *]}
+{:generation 48, :best-error 476, :diversity 1.0, :average-size 22.915, :best-genome [x x + x x * x + * -1 + * - x - * / -1 * * * - * 1 x - *]}
+{:generation 49, :best-error 476, :diversity 1.0, :average-size 21.83, :best-genome [x - x + x x * x + * -1 + * * - x - * -1 * * 1 x - *]}
+{:generation 50, :best-error 476, :diversity 1.0, :average-size 22.41, :best-genome [x - x + x x * x + * -1 + x - * / -1 * * - * 1 x - *]}
+{:generation 51, :best-error 476, :diversity 1.0, :average-size 23.33, :best-genome [x - x + x x * x + * -1 + x - * / - -1 * * * * 1 x - *]}
+{:generation 52, :best-error 476, :diversity 1.0, :average-size 22.44, :best-genome [x - x + x x * x + * -1 + x - * / -1 * - * 1 x - *]}
+{:generation 53, :best-error 476, :diversity 1.0, :average-size 22.135, :best-genome [x - x + x x * x + * -1 + x - * / -1 * - * 1 x - *]}
+{:generation 54, :best-error 476, :diversity 0.995, :average-size 22.405, :best-genome [x - x + x x * x + * -1 + x - * / -1 * - 1 x - *]}
+{:generation 55, :best-error 476, :diversity 1.0, :average-size 23.475, :best-genome [x - x + x x * x + * -1 + x - * / -1 * - 1 x - *]}
+{:generation 56, :best-error 476, :diversity 1.0, :average-size 22.855, :best-genome [x - x + x x * x + * -1 + x - / -1 * - 1 x - *]}
+{:generation 57, :best-error 476, :diversity 1.0, :average-size 21.84, :best-genome [x - x + + x x * x + * -1 + x - / -1 * - 1 x - *]}
+{:generation 58, :best-error 476, :diversity 1.0, :average-size 22.75, :best-genome [x + x + x x * x + * -1 + x - -1 * - 1 x - *]}
+{:generation 59, :best-error 476, :diversity 1.0, :average-size 22.42, :best-genome [x x + + x x * x + * -1 + x - -1 * - 1 x - *]}
+{:generation 60, :best-error 476, :diversity 0.995, :average-size 22.52, :best-genome [x + * x + x x * x + * -1 + x - -1 * - 1 x - *]}
+{:generation 61, :best-error 476, :diversity 1.0, :average-size 23.125, :best-genome [x x + + x x * x + * * -1 + x - -1 * - 1 x - *]}
+{:generation 62, :best-error 476, :diversity 1.0, :average-size 22.485, :best-genome [x x + + x x * x + * * -1 + x - -1 * - 1 x - *]}
+{:generation 63, :best-error 476, :diversity 1.0, :average-size 21.78, :best-genome [x x + x x * x + * * -1 + x - -1 * - 1 x - *]}
+{:generation 64, :best-error 476, :diversity 0.995, :average-size 21.285, :best-genome [x x + x x * x + * * -1 + x - -1 * - 1 x - *]}
+{:generation 65, :best-error 476, :diversity 1.0, :average-size 21.435, :best-genome [x x + + x x * x + * -1 + x - -1 * - 1 x - *]}
+{:generation 66, :best-error 476, :diversity 1.0, :average-size 20.655, :best-genome [x x + / x x * x + * - -1 + / x - -1 * - 1 x - *]}
+{:generation 67, :best-error 476, :diversity 1.0, :average-size 21.24, :best-genome [x x + + x x * x + * -1 + x - -1 * - 1 x - *]}
+{:generation 68, :best-error 476, :diversity 0.995, :average-size 20.39, :best-genome [x x + + - x x * x + * -1 + x - -1 * 1 x - *]}
+{:generation 69, :best-error 476, :diversity 0.99, :average-size 20.37, :best-genome [x x + x x * x + * - -1 + / x - -1 * 1 x - *]}
+{:generation 70, :best-error 476, :diversity 0.99, :average-size 19.8, :best-genome [x x + + - x x * x + * -1 + x - -1 * 1 x - *]}
+{:generation 71, :best-error 476, :diversity 1.0, :average-size 18.935, :best-genome [x x + + - x x * x + * -1 + x - -1 * 1 x - *]}
+{:generation 72, :best-error 476, :diversity 1.0, :average-size 19.31, :best-genome [x x + - x x * x + * -1 + x - -1 * 1 x - *]}
+{:generation 73, :best-error 476, :diversity 1.0, :average-size 19.425, :best-genome [x + x + - x x * x + * -1 + x - -1 * * 1 x - *]}
+{:generation 74, :best-error 476, :diversity 1.0, :average-size 19.83, :best-genome [x + x + - x x * x + * -1 + x - -1 * * 1 x - *]}
+{:generation 75, :best-error 476, :diversity 1.0, :average-size 21.155, :best-genome [x + x + - x x * x + * -1 + x - -1 * * 1 x - *]}
+{:generation 76, :best-error 476, :diversity 1.0, :average-size 21.935, :best-genome [x + x + - x x * x + * -1 + x - -1 * * 1 x - *]}
+{:generation 77, :best-error 476, :diversity 1.0, :average-size 21.94, :best-genome [x + x + - x x * x + * -1 + x - -1 * * 1 x - *]}
+{:generation 78, :best-error 476, :diversity 0.99, :average-size 21.22, :best-genome [x + x + x * x 1 + * -1 + + x - -1 * * 1 x - *]}
+{:generation 79, :best-error 476, :diversity 1.0, :average-size 21.205, :best-genome [* x + x + x * x 1 + * -1 + + x - -1 * * 1 x - *]}
+{:generation 80, :best-error 476, :diversity 0.995, :average-size 21.025, :best-genome [x + x + x * + x 1 + * + -1 + + x - -1 * * 1 x - *]}
+{:generation 81, :best-error 476, :diversity 1.0, :average-size 22.745, :best-genome [x + x + x * x 1 + * -1 + x - -1 * * 1 x - *]}
+{:generation 82, :best-error 476, :diversity 1.0, :average-size 22.12, :best-genome [x + - x + x * x 1 + * -1 + x - -1 * * 1 x - *]}
+{:generation 83, :best-error 476, :diversity 1.0, :average-size 21.57, :best-genome [x + x + x * x 1 + * -1 + x - -1 * * 1 x - *]}
+{:generation 84, :best-error 476, :diversity 1.0, :average-size 21.035, :best-genome [x + - x + x * x 1 + * -1 + x - -1 * 1 x - *]}
+{:generation 85, :best-error 476, :diversity 1.0, :average-size 20.67, :best-genome [x + x + x * x 1 + * -1 + x - -1 * * * + 1 x - *]}
+{:generation 86, :best-error 476, :diversity 1.0, :average-size 20.285, :best-genome [+ + x x + / x * x 1 + * -1 + x - -1 * * + 1 x - *]}
+{:generation 87, :best-error 476, :diversity 1.0, :average-size 20.855, :best-genome [0 x + - x + x * + * -1 + x -1 - -1 * * * + 1 x - *]}
+{:generation 88, :best-error 476, :diversity 1.0, :average-size 20.075, :best-genome [x + x + x * x 1 + * -1 + x - -1 * * * + 1 x - * *]}
+{:generation 89, :best-error 476, :diversity 0.995, :average-size 20.325, :best-genome [0 x + - x + x * + -1 + x -1 - -1 * * * + 1 x - *]}
+{:generation 90, :best-error 476, :diversity 0.995, :average-size 22.075, :best-genome [x x + x * + -1 + x -1 - -1 * * 1 * + + 1 x - *]}
+{:generation 91, :best-error 476, :diversity 1.0, :average-size 21.105, :best-genome [x + - + x + x * + -1 + x -1 - * -1 * * + 1 x - *]}
+{:generation 92, :best-error 476, :diversity 1.0, :average-size 20.945, :best-genome [x + - + x + x * + -1 + x -1 - * -1 * * + 1 x - *]}
+{:generation 93, :best-error 476, :diversity 0.995, :average-size 21.25, :best-genome [x + - + x + x * + -1 + x -1 - * -1 * * + 1 x - *]}
+{:generation 94, :best-error 476, :diversity 1.0, :average-size 20.375, :best-genome [x + - + x + x * + -1 + x -1 - * -1 * * + 1 x - *]}
+{:generation 95, :best-error 476, :diversity 1.0, :average-size 19.96, :best-genome [+ - + x x + x * + -1 + 1 x -1 - * * -1 * * + 1 x - *]}
+{:generation 96, :best-error 476, :diversity 1.0, :average-size 19.775, :best-genome [x + + - + x + x * + -1 + x -1 - * -1 * * + 1 x - *]}
+{:generation 97, :best-error 476, :diversity 1.0, :average-size 21.2, :best-genome [x + + - + x + x * + -1 + x -1 - * -1 * - * + 1 x - *]}
+{:generation 98, :best-error 476, :diversity 1.0, :average-size 23.07, :best-genome [x - + x + x * + -1 + -1 1 x -1 - * * * * / + 1 x - *]}
+{:generation 99, :best-error 476, :diversity 0.995, :average-size 22.49, :best-genome [x * + + - + x + x * + + -1 + x -1 - * -1 * * 0 + 1 x - *]}
+{:generation 100, :best-error 476, :diversity 1.0, :average-size 22.0, :best-genome [x * + + - + x + x * + / -1 + x -1 - * -1 * * + 1 x - *]}
+{:generation 101, :best-error 476, :diversity 1.0, :average-size 24.145, :best-genome [x * - + * x + x * + / -1 + x -1 - * -1 * * + 1 x - *]}
+{:generation 102, :best-error 476, :diversity 1.0, :average-size 24.81, :best-genome [x * - + * x + x * + / -1 + x -1 - * -1 * + 1 x - *]}

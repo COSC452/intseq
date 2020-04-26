@@ -1,8 +1,0 @@
-#! /bin/sh
-
-condor_submit condor-run-simple-awlee22.cmd
-condor_submit condor-run-A168392-awlee22.cmd
-condor_submit condor-run-A114241-awlee22.cmd
-condor_submit condor-run-A037270-awlee22.cmd
-condor_submit condor-run-A005132-awlee22.cmd
-condor_submit condor-run-A000292-awlee22.cmd

@@ -226,11 +226,7 @@
           mutate? umad-add-rate umad-del-rate elitism? report?]
   "Runs genetic programming to find and return a function that perfectly fits the test-pairs data
   in the context of the given population-size and number of generations to run-simple."
-  (println "Running:" [:population-size population-size :generations generations :selection-type selection-type
-                       :crossover? crossover? :crossover-type crossover-type :mutate? mutate?
-                       :umad-add-rate umad-add-rate :umad-del-rate umad-del-rate :elitism? elitism?])
-  (loop [population (repeatedly population-size
-                                #(new-individual test-pairs))
+  (loop [population (repeatedly population-size #(new-individual test-pairs))
          generation 0]
     (when report?
       (report generation population))
@@ -281,7 +277,7 @@
    Note: setting export-stats? to true will automatically make report? be false
 
    Example Input:
-          lein run-simple 200 200 :simple :lexicase-selection true :single-point-crossover true 0.09 0.1 true true false"
+          lein run 200 200 :simple :lexicase-selection true :single-point-crossover true 0.09 0.1 true true false"
   (let [population-size (read-string (nth args 0))
         generations (read-string (nth args 1))
         seq-id (read-string (nth args 2))
@@ -298,8 +294,8 @@
         result (if export-stats?
                  (time-process (time (gp population-size generations training-terms selection-type
                                          crossover? crossover-type mutate? umad-add-rate umad-del-rate elitism? false)))
-                 (gp population-size generations training-terms selection-type
-                     crossover? crossover-type mutate? umad-add-rate umad-del-rate elitism? report?))
+                 (time (gp population-size generations training-terms selection-type
+                     crossover? crossover-type mutate? umad-add-rate umad-del-rate elitism? report?)))
         success? (and (= 0 (:best-error result))
                       (seqs/check (:function result) (get-seq seq-id)))]
     (if success?

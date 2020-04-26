@@ -1,0 +1,5 @@
+#! /bin/sh
+for i in {1..100}
+do
+    lein run 200 200 :simple :lexicase-selection true :uniform-crossover true 0.09 0.1 true false true
+done

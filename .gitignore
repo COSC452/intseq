@@ -3,5 +3,5 @@
 .idea/workspace.xml
 target/repl-port
 .idea/misc.xml
-results/*
-condor/*
+results/
+condor/

@@ -10,4 +10,4 @@ executable  = run
 output = /home/mgirjau21/cluster-scratch/intseq/results/test/out
 error  = /home/mgirjau21/cluster-scratch/intseq/results/test/err
 log    = /home/mgirjau21/cluster-scratch/intseq/results/test/log
-queue
+queue 10

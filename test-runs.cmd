@@ -1,6 +1,6 @@
 ## Global job properties
 universe    = vanilla
-notification = error
+notification = always
 notify_user  = mgirjau21@amherst.edu
 initialdir  = /mnt/scratch/mgirjau21/intseq
 getenv = True

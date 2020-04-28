@@ -26,8 +26,10 @@
   ([seq-id subset]
    (get (seqs/split-sequence (get-seq seq-id)) subset)))
 
-(defn evaluate [genome input]
-  "Returns the result obtained by evaluating the genome at a specific input."
+(defn evaluate [genome input output]
+  "If the <output> argument is nil, returns the result obtained by evaluating the genome at a specific input.
+  For a non-nil <output>, returns the absolute difference between the evaluated genome and the theoretical output,
+  i.e. the error of the genome for a specific input-output pair."
   (loop [program genome
          stack ()]
     (if (= (first stack) :overflow)
@@ -35,36 +37,7 @@
       (if (empty? program)
         (if (empty? stack)
           10000000
-          (first stack))
-        (recur (rest program)
-               (case (first program)
-                 + (ops/add stack)
-                 - (ops/sub stack)
-                 * (ops/mult stack)
-                 / (ops/div stack)
-                 x (cons input stack)
-                 (cons (first program) stack)))))))
-
-(defn convert [genome]
-  "Converts a stack-based genome to a Clojure function."
-  (fn [n]
-    (evaluate genome n)))
-
-;; Specifies ingredients (mathematical operations) to use.
-;; Note: not all possible operators are included such as expt, lcm, perm, comb.
-;;       not including them right now, because they make the numbers way too big to compute.
-(def ingredients '(+ - * / x -1 0 1))
-
-(defn error-loop [genome input output]
-  "Returns the error of the genome for given input output pair."
-  (loop [program genome
-         stack ()]
-    (if (= (first stack) :overflow)
-      10000000
-      (if (empty? program)
-        (if (empty? stack)
-          10000000
-          (math/abs (- output (first stack))))
+          (if (nil? output) (first stack) (math/abs (- output (first stack)))))
         (recur (rest program)
                (case (first program)
                  + (ops/add stack)
@@ -90,12 +63,22 @@
                  x (cons input stack)
                  (cons (first program) stack)))))))
 
+(defn convert [genome]
+  "Converts a stack-based genome to a Clojure function, which is then returned."
+  (fn [n]
+    (evaluate genome n nil)))                               ;; no output, so nil
+
+;; Specifies ingredients (mathematical operations) to use.
+;; Note: not all possible operators are included such as expt, lcm, perm, comb.
+;;       not including them right now, because they make the numbers way too big to compute.
+(def ingredients '(+ - * / x -1 0 1))
+
 (defn error [genome test-pairs]
   "Returns the error of genome in the context of test-pairs."
   (reduce + (for [pair test-pairs]
               (let [input (first pair)
                     output (second pair)]
-                (error-loop genome input output)))))
+                (evaluate genome input output)))))
 
 (defn new-individual [test-pairs]
   "Returns a new, random individual in the context of test-pairs."
@@ -115,7 +98,7 @@
   "Returns candidates with their corresponding case errors."
   (let [input (first test-pair)
         output (second test-pair)]
-    (map #(conj % {:case-error (error-loop (:genome %) input output)}) candidates)))
+    (map #(conj % {:case-error (evaluate (:genome %) input output)}) candidates)))
 
 (defn lexicase-selection [population test-pairs]
   "Returns an individual from the population using lexicase selection."
@@ -298,7 +281,7 @@
                  (time-process (time (gp population-size generations training-terms selection-type tournament-size
                                          crossover? crossover-type mutate? umad-add-rate umad-del-rate elitism? false)))
                  (time (gp population-size generations training-terms selection-type tournament-size
-                     crossover? crossover-type mutate? umad-add-rate umad-del-rate elitism? report?)))
+                           crossover? crossover-type mutate? umad-add-rate umad-del-rate elitism? report?)))
         success? (and (= 0 (:best-error result))
                       (seqs/check (:function result) (get-seq seq-id)))]
     (if success?

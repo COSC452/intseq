@@ -8,3 +8,4 @@
                  [org.clojure/math.combinatorics "0.1.6"]]
   :main intseq.core
   :repl-options {:init-ns intseq.core})
+

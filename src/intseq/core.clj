@@ -129,14 +129,14 @@
         (recur (filter #(= min-error (:case-error %)) candidates-w-case-error)
                (rest cases))))))
 
-(defn tournament-selection [population]
+(defn tournament-selection [population tournament-size]
   "Returns an individual selected from the population using tournament selection."
-  (best (repeatedly 2 #(rand-nth population))))
+  (best (repeatedly tournament-size #(rand-nth population))))
 
-(defn select [population test-pairs selection-type]
+(defn select [population test-pairs selection-type tournament-size]
   "Returns an individual selected from population using specified selection method."
   (case selection-type
-    :tournament-selection (tournament-selection population)
+    :tournament-selection (tournament-selection population tournament-size)
     :lexicase-selection (lexicase-selection population test-pairs)))
 
 (defn mutate [genome umad-add-rate umad-del-rate]
@@ -193,11 +193,11 @@
     :single-point-crossover (single-point-crossover genome1 genome2)
     :uniform-crossover (uniform-crossover genome1 genome2)))
 
-(defn make-child [population test-pairs selection-type crossover? crossover-type mutate? umad-add-rate umad-del-rate]
+(defn make-child [population test-pairs selection-type tournament-size crossover? crossover-type mutate? umad-add-rate umad-del-rate]
   "Returns a new, evaluated child, produced by mutating the result
   of crossing over parents that are selected from the given population."
-  (let [parent-genome1 (:genome (select population test-pairs selection-type))
-        parent-genome2 (:genome (select population test-pairs selection-type))
+  (let [parent-genome1 (:genome (select population test-pairs selection-type tournament-size))
+        parent-genome2 (:genome (select population test-pairs selection-type tournament-size))
         crossover-genome (crossover parent-genome1 parent-genome2 crossover-type umad-add-rate umad-del-rate)
         new-genome (if crossover?
                      (if mutate?
@@ -223,8 +223,8 @@
                                       (count population)))
               :best-genome  (:genome current-best)})))
 
-(defn gp [population-size generations test-pairs selection-type crossover? crossover-type
-          mutate? umad-add-rate umad-del-rate elitism? report?]
+(defn gp [population-size generations test-pairs selection-type tournament-size crossover?
+          crossover-type mutate? umad-add-rate umad-del-rate elitism? report?]
   "Runs genetic programming to find and return a function that perfectly fits the test-pairs data
   in the context of the given population-size and number of generations to run-simple."
   (loop [population (repeatedly population-size #(new-individual test-pairs))
@@ -252,12 +252,12 @@
         (recur (if elitism?
                  (conj (repeatedly (dec population-size)
                                    #(make-child population test-pairs selection-type
-                                                crossover? crossover-type
+                                                tournament-size crossover? crossover-type
                                                 mutate? umad-add-rate umad-del-rate))
                        best-individual)
                  (repeatedly population-size
                              #(make-child population test-pairs selection-type
-                                          crossover? crossover-type
+                                          tournament-size crossover? crossover-type
                                           mutate? umad-add-rate umad-del-rate)))
                (inc generation))))))
 
@@ -266,6 +266,7 @@
           <int> generations,
           <keyword> seq-id: {:simple :A037270 :A000292 :A114241 :A168392 :A005132 :A000040},
           <keyword> selection-type: {:lexicase-selection :tournament-selection},
+          <int> tournament-size, (will be ignored if using lexicase selection)
           <boolean> crossover?,
           <keyword> crossover-type: {:single-point-crossover :uniform-crossover :umad-crossover},
           <boolean> mutate?,
@@ -278,24 +279,25 @@
    Note: setting export-stats? to true will automatically make report? be false
 
    Example Input:
-          lein run 200 200 :simple :lexicase-selection true :single-point-crossover true 0.09 0.1 true true false"
+          lein run 200 200 :simple :lexicase-selection 0 true :single-point-crossover true 0.09 0.1 true true false"
   (let [population-size (read-string (nth args 0))
         generations (read-string (nth args 1))
         seq-id (read-string (nth args 2))
         selection-type (read-string (nth args 3))
-        crossover? (read-string (nth args 4))
-        crossover-type (read-string (nth args 5))
-        mutate? (read-string (nth args 6))
-        umad-add-rate (read-string (nth args 7))
-        umad-del-rate (read-string (nth args 8))
-        elitism? (read-string (nth args 9))
-        report? (read-string (nth args 10))
-        export-stats? (read-string (nth args 11))
+        tournament-size (read-string (nth args 4))
+        crossover? (read-string (nth args 5))
+        crossover-type (read-string (nth args 6))
+        mutate? (read-string (nth args 7))
+        umad-add-rate (read-string (nth args 8))
+        umad-del-rate (read-string (nth args 9))
+        elitism? (read-string (nth args 10))
+        report? (read-string (nth args 11))
+        export-stats? (read-string (nth args 12))
         training-terms (get-seq seq-id :training)
         result (if export-stats?
-                 (time-process (time (gp population-size generations training-terms selection-type
+                 (time-process (time (gp population-size generations training-terms selection-type tournament-size
                                          crossover? crossover-type mutate? umad-add-rate umad-del-rate elitism? false)))
-                 (time (gp population-size generations training-terms selection-type
+                 (time (gp population-size generations training-terms selection-type tournament-size
                      crossover? crossover-type mutate? umad-add-rate umad-del-rate elitism? report?)))
         success? (and (= 0 (:best-error result))
                       (seqs/check (:function result) (get-seq seq-id)))]

@@ -21,7 +21,8 @@
      :A000292 seqs/A000292
      :A114241 seqs/A114241
      :A168392 seqs/A168392
-     :A005132 seqs/A005132))
+     :A005132 seqs/A005132
+     :A000040 seqs/A000040))
   ([seq-id subset]
    (get (seqs/split-sequence (get-seq seq-id)) subset)))
 
@@ -263,7 +264,7 @@
 (defn -main [& args]
   "Input: <int> population-size,
           <int> generations,
-          <keyword> seq-id: {:simple :A037270 :A000292 :A114241 :A168392 :A005132},
+          <keyword> seq-id: {:simple :A037270 :A000292 :A114241 :A168392 :A005132 :A000040},
           <keyword> selection-type: {:lexicase-selection :tournament-selection},
           <boolean> crossover?,
           <keyword> crossover-type: {:single-point-crossover :uniform-crossover :umad-crossover},

@@ -289,11 +289,11 @@
       (println "Solution approximate or does not match test cases - Failure!"))
     (if export-stats?
       (let [filename (str "data/" population-size "_" generations "_" (name seq-id) "_"
-                          (name selection-type) "_" crossover? "_" (name crossover-type) "_"
+                          (name selection-type) "_" tournament-size "_" crossover? "_" (name crossover-type) "_"
                           mutate? "_" umad-add-rate "_" umad-del-rate "_" elitism? ".csv")
-            stats-map (assoc (dissoc result :function) :success? success?)
-            stats-csv (str (clojure.string/join ", " (vals stats-map)) "\n")]
+            stats-to-write (concat (take 11 args) (vals (assoc (dissoc result :function) :success? success?)))
+            stats-csv (str (clojure.string/join ", " stats-to-write) "\n")]
         ;; first time we write to .csv, add in the column names
         (when (not (.exists (clojure.java.io/as-file filename)))
-          (spit filename "genome, generations, best_error, diversity, avg_size, time_taken, found_solution\n"))
+          (spit filename "population_size, max_generations, sequence, selection_type, tournament_size, has_crossover, crossover_type, has_mutation, umad_add_rate, umad_del_rate, has_elitism, genome, generations_taken, best_error, diversity, avg_size, time_taken, found_solution\n"))
         (spit filename stats-csv :append true)))))

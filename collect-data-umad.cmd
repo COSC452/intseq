@@ -28,10 +28,10 @@ arguments = 1000 300 :A114241 :lexicase-selection 0 false :single-point-crossove
 queue 100
 
 arguments = 1000 300 :A114241 :lexicase-selection 0 true :single-point-crossover true 0.09 0.1 true false true
-queue 100
+queue 1
 
 arguments = 1000 300 :A168392 :lexicase-selection 0 false :single-point-crossover true 0.09 0.1 true false true
-queue 100
+queue 1
 
 arguments = 1000 300 :A168392 :lexicase-selection 0 true :single-point-crossover true 0.09 0.1 true false true
-queue 100
+queue 1

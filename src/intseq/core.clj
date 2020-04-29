@@ -102,7 +102,7 @@
 
 (defn lexicase-selection [population test-pairs]
   "Returns an individual from the population using lexicase selection."
-  (loop [candidates (distinct population)
+  (loop [candidates (map rand-nth (vals (group-by :error population))) ;; speed up lexicase selection
          cases (shuffle test-pairs)]
     (if (or (empty? cases)
             (empty? (rest candidates)))
@@ -185,7 +185,7 @@
         new-genome (if crossover?
                      (if mutate?
                        (mutate crossover-genome umad-add-rate umad-del-rate) ;; crossover and mutate
-                       crossover-genome)                    ;; crossover but no don't mutate
+                       crossover-genome)                    ;; crossover but don't mutate
                      (if mutate?
                        (mutate parent-genome1 umad-add-rate umad-del-rate) ;; don't crossover but mutate
                        parent-genome1))]                    ;; don't crossover and don't mutate

@@ -1,0 +1,4 @@
+population_size, max_generations, sequence, selection_type, tournament_size, has_crossover, crossover_type, has_mutation, umad_add_rate, umad_del_rate, has_elitism, genome, generations_taken, best_error, diversity, avg_size, time_taken, found_solution
+1000, 300, :A000292, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [1 - x 1 x - -1 - / x 0 + -1 + x x + * +], 300, 42, 0.987, 19.463, 2249429.072038, false
+1000, 300, :A000292, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [-1 + + x 1 - + x 1 x -1 x + / + / x + x + * /], 300, 25, 0.994, 21.639, 2459518.145351, false
+1000, 300, :A000292, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [-1 0 - x + / 1 - -1 x / x - - / x *], 300, 44, 0.977, 17.389, 1987894.554322, false

@@ -1,0 +1,101 @@
+population_size, max_generations, sequence, selection_type, tournament_size, has_crossover, crossover_type, has_mutation, umad_add_rate, umad_del_rate, has_elitism, genome, generations_taken, best_error, diversity, avg_size, time_taken, found_solution
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x + - x x x x * * + * 1 -1 - / / + 0 +], 11, 0, 0.96, 15.854, 42012.909972, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [0 x - 1 / + + + x x x * * - x * - -1 -1 + / / *], 31, 0, 0.982, 18.56, 219586.338669, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x x x * * x + 1 1 + / 1 / x *], 40, 0, 0.988, 18.558, 404618.833081, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x + 0 + x x * x * + * 1 -1 - / x * - *], 31, 0, 0.972, 17.037, 348278.319074, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x x * 1 -1 * - / * x * + - 1 1 + / + - x *], 31, 0, 0.969, 16.262, 193283.201366, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x + + + x * * 1 + / - x * + 1 1 + / + + x * * /], 56, 0, 0.976, 19.056, 452229.171227, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x x x * x * + + 1 1 + / * - x * 1 * * + /], 40, 0, 0.981, 18.169, 724156.887228, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x x * -1 - x * * 1 -1 / + 1 + 1 / + + x * 1 1 + / 1 / 1 *], 63, 0, 0.996, 21.28, 1246152.080753, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x x x x * * + + 1 -1 - / x * + * - / * +], 67, 0, 0.969, 17.538, 1265266.451072, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x x x 0 + * * -1 x - - -1 1 - / -1 * x *], 68, 0, 0.989, 19.99, 1422116.303525, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [/ x x -1 + * + - -1 x + * -1 -1 + / - -1 / * + x x * + / x *], 125, 0, 0.997, 25.117, 1866231.214249, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [- - + x 0 x 1 x x x x * -1 + * x * x x + / x + *], 173, 0, 0.993, 25.776, 2187415.59084, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x x x * 1 * -1 - * 1 -1 - / * - 1 * 0 - x * +], 107, 0, 0.985, 20.823, 2343432.722009, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x x * 1 + + / + + x * x * 1 -1 - / * * 0 + * *], 105, 0, 0.998, 20.77, 2387431.211831, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [+ x x x x * * + 1 1 + / x * + - * *], 37, 0, 0.972, 18.069, 303587.106818, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [/ / 1 x x * - x * -1 -1 + / * / * x + - x *], 106, 0, 0.977, 18.078, 2572770.483295, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [+ x * - x 0 - x x * 0 - 0 + * + 1 -1 - / x * - - *], 122, 0, 0.996, 26.015, 2831878.595805, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x -1 / / * / x * - / -1 + + + x * -1 -1 + / * x 0 + * -], 162, 0, 0.989, 21.976, 2854907.508469, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [/ x x * 1 + + x * 1 1 1 / + / 0 / -1 * + x * * / 1 *], 113, 0, 0.995, 22.589, 2886146.640229, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x x * 1 + x * + - 1 -1 - / 1 x * 0 x * + * /], 146, 0, 0.977, 18.61, 3068329.253819, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [* x x x x x * 1 + * -1 -1 + / * x + -], 156, 0, 0.971, 16.638, 2838327.321267, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x - + * x x * * - x - / + 1 -1 - / x + + * + x *], 133, 0, 0.993, 21.258, 3117957.67106, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [-1 x x * - x * -1 -1 + / x * *], 204, 0, 0.969, 21.036, 3026441.076567, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [-1 x -1 x x * x * * x 1 - + -1 1 - / + x *], 128, 0, 0.977, 18.744, 3107103.459437, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [/ x 1 0 - x x * + * 1 -1 - / + x * *], 221, 0, 0.991, 20.914, 3243150.233698, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [+ 1 x * x 0 - x * 1 + * -1 -1 + / / - -1 + 1 + x x - x - * +], 228, 0, 0.996, 25.16, 3383437.339057, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x x * -1 + x * 1 -1 - / * x + x * *], 253, 0, 0.934, 17.938, 3837843.30422, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [-1 / x + - 1 - - x x + -1 x + x + x + * * - x + / + * *], 300, 672, 0.985, 19.792, 3872379.514234, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [0 0 1 x x + x x + -1 + x + x -1 + -1 + * 1 / x - *], 300, 455, 0.986, 22.136, 3897777.184823, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [- / x 1 - -1 x 1 - + + x x + x + x 1 - * x - *], 300, 480, 0.989, 21.996, 3903833.798289, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x -1 x + x x x * * + -1 1 - / x * - 1 / + / +], 180, 0, 0.948, 15.253, 3936923.410789, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [/ x x * / -1 -1 + / * x x * + x x * * - -], 300, 60, 0.986, 17.988, 3709036.945423, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x x * 1 - x x * * -1 - x x + / - * - / + + - + x + - - + x * *], 134, 0, 0.994, 25.28, 1599398.988193, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [- x 1 / 0 -1 x - x * -1 -1 + / + x * + x 1 - * - x +], 254, 0, 0.997, 23.754, 3720899.631328, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x x x x x * * + -1 -1 + / -1 * *], 182, 0, 0.955, 16.078, 4219075.438346, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x / / -1 1 - / x 1 / x + x 1 x + -1 * * x * + * -], 300, 529, 0.987, 20.74, 3559902.666555, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [- x -1 -1 + / x + x x -1 + * * x + + x *], 300, 340, 0.977, 20.158, 4280075.336717, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [-1 x + x x * x + -1 + + -1 1 + 0 + + x -1 + * * 1 1 + / + / x *], 300, 375, 1.0, 26.187, 4297651.223941, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [/ x / 1 1 1 0 + + 0 * x + x x * -1 + * + * 1 1 + /], 300, 265, 0.99, 21.935, 4236364.824579, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [+ x -1 0 - x 1 1 + / 1 * - x 1 - * x 0 x + * + * x *], 300, 340, 0.989, 24.36, 4317337.403306, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [-1 - * x / x + - + x * x * 1 -1 - / x * -], 300, 155, 0.995, 27.309, 4056964.574535, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [* -1 -1 -1 + + x + x x + * - x + x 1 * x x + + * *], 300, 490, 0.988, 19.301, 4368209.262461, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x x * 0 + 1 + * x * 1 -1 - / * * x * +], 163, 0, 0.945, 18.868, 4417987.219031, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x + x x x * * + 1 -1 - / - + / / - + 0 + -1 - x * - / + * x - 0 + + +], 157, 0, 0.997, 25.344, 4504538.138218, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x x * + -1 + x * 1 1 + / / x 1 - + - 1 + x * /], 99, 0, 0.995, 23.07, 2252400.835801, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x 1 - x + * - x x + -1 + x + -1 x + -1 + * * * -1 - +], 300, 483, 0.99, 20.53, 4237643.436336, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x / x 0 -1 0 -1 x * x x x * * + + 1 -1 - / + 1 + + + x *], 158, 0, 0.997, 23.726, 4661515.505132, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [-1 / x + / - x + x + -1 x + x + -1 x -1 + + * * x + - -1 -1 + -], 300, 480, 0.998, 25.154, 4772375.077393, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x x * 1 + x x * * 1 -1 - / * + *], 161, 0, 0.941, 17.586, 4737752.433051, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [+ * x x * 1 + x * * -1 - - -1 - / 1 -1 -1 - / / + 1 + / 1 - + x *], 186, 0, 0.988, 22.931, 5052753.621809, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x x * 1 x x x * * * -1 + x + 1 + * x + x - x x + / *], 177, 0, 0.996, 23.084, 4939077.69847, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x -1 x -1 x -1 + + + + -1 -1 + + x x x + + * *], 300, 490, 0.987, 22.391, 4431924.33391, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x -1 -1 0 / + x / - * / -1 + + x * -1 -1 + / * - + - + / + -1 x + * x + + * x *], 186, 0, 1.0, 31.098, 2397371.996531, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x - x * x -1 * * 1 x - + - 1 - -1 -1 + / 1 + 1 - x *], 248, 0, 0.976, 20.007, 5469051.572612, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x x * x * 1 -1 - / - x *], 300, 155, 0.992, 21.487, 4075431.440099, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [- -1 / / x - * x * -1 -1 + / * / + x x 0 + / + - - x -1 + * x * + - x +], 186, 0, 0.999, 29.33, 6167907.874872, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [+ / x + 0 + * x x 1 x x * + 1 + -1 1 / + * * * x x + / *], 281, 0, 0.993, 23.227, 6857333.801453, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [1 x 1 -1 * x x * -1 - x * -1 -1 + / * *], 260, 0, 0.982, 18.686, 6892274.800931, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [/ -1 x + -1 + x -1 x x + + + x -1 x + 1 / + * * *], 300, 485, 0.998, 21.95, 7121010.605378, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x + x -1 + -1 1 - / x + x -1 + * * * 0 + x *], 300, 389, 0.987, 18.034, 7238217.382537, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x x * + + - x + -1 x + * -1 1 - / -1 * x + x *], 281, 0, 0.985, 20.144, 7347434.083228, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x x x * * x + x 0 + 1 1 + x * + x / -1 + / * + x *], 228, 0, 0.975, 23.585, 7355746.99751, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x x * 1 / x * x x + / -1 x + x * x + *], 300, 225, 0.975, 19.297, 7778603.211991, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [* 0 x -1 -1 + + 1 / -1 x x + + x x + -1 + x + * * x +], 300, 484, 0.988, 22.633, 7934507.506622, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x / / x x + + -1 x -1 + x + + -1 -1 x + + * *], 300, 513, 0.99, 20.809, 7983367.172589, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x -1 + * * 0 / - 0 + x + x + + / -1 x 0 x + + + -1 x + -1 + * *], 300, 485, 0.997, 21.468, 8125252.953868, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [- + + x 1 - * x + x x + x + -1 + * * -1 x + -1 1 * + * x + +], 300, 484, 0.991, 21.699, 8065983.418486, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [- x x * + / / * 1 0 x + x / + / + -1 x x * + * 1 +], 300, 356, 0.996, 22.042, 8155417.25837, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [-1 + 0 x x 0 1 - / x x x * x * + 1 -1 - / x * + x +], 293, 0, 0.98, 19.673, 7976412.17239, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [+ x / 1 -1 - 1 - * - * - - x x * + + -1 x + 0 + * 1 1 + / x *], 300, 285, 0.991, 20.435, 8250334.464606, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [* 1 * / 1 x x x -1 + + + x x + -1 + * x -1 1 - + * +], 300, 483, 0.983, 21.162, 7944357.328803, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x -1 / + * x / / x + + + 0 - + x + x 0 + + x -1 + x + * -1 -1 x + + *], 300, 483, 0.982, 21.947, 7805408.787198, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [- x x + + -1 x x x + + + -1 x -1 + + * x - *], 300, 455, 0.994, 22.889, 8446006.8149, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x / x x -1 1 - / x * + - - - x 0 + x x * + * *], 300, 505, 0.994, 21.659, 8431332.414979, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [-1 -1 -1 + -1 x 0 + + -1 + + + x + x x x + + * x * * * *], 300, 490, 0.987, 23.149, 8459628.685457, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x + - 1 * * x x x * * + 1 -1 - / x * 1 / * + + * /], 262, 0, 0.996, 21.988, 8649955.166418, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [1 - x * 1 + -1 -1 + x + + x + * + -1 x x + + x -1 + 1 - * * * / *], 300, 485, 0.994, 20.992, 8685614.521024, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x + / x x * * x + 1 1 + / x * + x 0 -1 x * - - - +], 266, 0, 0.99, 21.721, 8690724.989364, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [- 1 - - x x x x * * + -1 -1 + / x * - *], 300, 10, 0.962, 19.006, 8734882.363732, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x 1 1 + / x -1 1 x + + * x + * 1 / - x * /], 300, 505, 0.999, 26.744, 8719436.457512, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [1 - x / + -1 + / x + x + + x + * / - + -1 x + x + x 1 - 1 - * *], 300, 484, 0.997, 22.69, 8716835.247217, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [/ x x * -1 - / 1 1 + / 1 x x * * *], 300, 60, 0.979, 17.507, 8778846.559923, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [-1 * + x + / -1 + x x + x x + -1 + x + * 1 * *], 300, 651, 0.994, 20.271, 8803758.206125, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x * -1 * 1 - + + x -1 -1 + / x * * x * -], 300, 505, 0.988, 20.943, 8465728.408635, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x * + * * x * 1 1 + / * - 1 / x x * *], 300, 225, 0.993, 23.175, 8838427.169406, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x x x + + 0 / x / 0 - / x x + + x -1 -1 + + * x - *], 300, 490, 0.983, 20.492, 7877379.815432, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [- - 1 x x -1 / -1 0 x + x + x + + x x -1 + + -1 x + 1 - * *], 300, 485, 0.985, 19.852, 9247394.594603, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x x + -1 + x + -1 -1 + x + x x -1 + + * * / x + +], 300, 484, 0.989, 23.228, 9354002.581482, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [-1 x x + x + + -1 x x + + -1 x + -1 + * * 1 +], 300, 483, 0.992, 21.864, 9436087.632988, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [1 x x * x x * x x + + -1 x + -1 x + + / -1 -1 + x + * * +], 300, 389, 0.991, 21.44, 9632796.581103, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [- + x x + -1 + x + -1 x + x -1 1 - + + -1 + -1 + * x + - / x *], 300, 470, 0.996, 26.397, 9139775.39983, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x x * x * - x + x x * * * x x + / + + + + + + - -], 277, 0, 0.991, 19.381, 7598705.80037, true
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x x + -1 x + x x + + -1 x + 1 - * x - *], 300, 455, 0.979, 20.05, 8636546.720444, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [0 x 0 x x x + x + x -1 -1 + + x + -1 -1 + + 1 - * x - 0 1 + / *], 300, 475, 0.99, 23.027, 1.01380352158757, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [-1 -1 -1 + -1 + + + / x + x -1 -1 x -1 + + -1 + + + + x x + * - x *], 300, 475, 0.989, 23.351, 1.02947656305497, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [/ / * * + 1 * - -1 x -1 + -1 0 x -1 -1 + + + + -1 + + x + + 1 - x x + * -1 + x - -1 + x *], 300, 460, 0.999, 27.041, 1.03863089763257, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [* x -1 - -1 x 1 - + x x x + -1 + + x -1 x + + * *], 300, 485, 0.982, 17.985, 9349340.194102, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x -1 * x * + -1 1 - 0 / + / * x x * * * + 0 - x + +], 300, 180, 0.993, 21.789, 8174629.9873, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [x + - + 1 -1 - / 1 + + x -1 x + * * * x - x * / + +], 300, 458, 0.988, 23.006, 1.14914820671657, false
+1000, 300, :A037270, :lexicase-selection, 0, false, :single-point-crossover, true, 0.09, 0.1, true, [-1 x 0 -1 - - + + 1 / x x + x + -1 -1 x + 0 x + + + * *], 300, 513, 0.995, 19.166, 8984696.054918, false

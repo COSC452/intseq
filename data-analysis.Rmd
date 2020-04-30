@@ -1,0 +1,52 @@
+---
+title: "Integer Sequences - Statistical Analysis"
+author: "E.  Ajao, M. C. Gîrjău, A. Lee"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+library(cowplot)
+library(GGally)
+library(kableExtra)
+library(tidyverse)
+
+# Tweaks to adjust code chunk font size
+chunk_hook <- knitr::knit_hooks$get("chunk")
+knitr::knit_hooks$set(chunk = function(x, options) {
+  x <- chunk_hook(x, options)
+  ifelse(options$size != "normalsize", 
+         paste0("\n \\", options$size, "\n\n", x, "\n\n \\normalsize"), x)
+})
+
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  fig.align = "center",
+  tidy = FALSE, 
+  size = "small", 
+  comment = NA)
+
+theme_set(theme_bw())
+```
+
+We are investigating whether there is any significant difference in the performance/accuracy of UMAD with single-point crossover and UMAD with no crossover.
+
+```{r}
+# read in data
+data <- readRDS("data/clean.Rds")
+
+
+
+data %>%
+  group_by(sequence, has_crossover) %>%
+  summarize(total_runs = n(),
+            success_rate = mean(found_solution),
+            avg_generations = mean(generations_taken), 
+            avg_runtime = mean(time_taken)) %>%
+  kable(booktabs = TRUE, digits = 2, linesep = "", align = "c") %>%
+  kable_styling(latex_options = "hold_position")
+
+prop.test(c(48 + 6 + 100, 49 + 100), c(1000, 1000), alternative = "g") # overall
+prop.test(c(6, 0), c(100, 100), alternative = "g") # just for :A16839
+```
+

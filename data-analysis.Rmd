@@ -35,18 +35,19 @@ We are investigating whether there is any significant difference in the performa
 # read in data
 data <- readRDS("data/clean.Rds")
 
-
-
 data %>%
   group_by(sequence, has_crossover) %>%
-  summarize(total_runs = n(),
-            success_rate = mean(found_solution),
+  summarize(success_rate = mean(found_solution),
             avg_generations = mean(generations_taken), 
-            avg_runtime = mean(time_taken)) %>%
-  kable(booktabs = TRUE, digits = 2, linesep = "", align = "c") %>%
+            avg_runtime = mean(time_taken),
+            avg_error = mean(best_error),
+            avg_size = mean(avg_size)) %>%
+  kable(booktabs = TRUE, digits = 2, linesep = "", align = "lrrrrrr",
+        col.names = c("Sequence", "Has Crossover", "Success Rate", "Mean Generations",
+                      "Mean Runtime", "Mean Error", "Mean Size")) %>%
   kable_styling(latex_options = "hold_position")
 
-prop.test(c(48 + 6 + 100, 49 + 100), c(1000, 1000), alternative = "g") # overall
+prop.test(c(48 + 6 + 100, 49 + 100), c(1000, 1000), alternative = "l") # overall
 prop.test(c(6, 0), c(100, 100), alternative = "g") # just for :A16839
 ```
 

@@ -6,7 +6,7 @@ A Clojure library designed to find closed-form expressions for integer sequences
 
 After browsing the [On-Line Encyclopedia of Integer Sequences (OEIS)](https://oeis.org/), we noticed that many of the sequences listed in their database did not have formulas. Since Genetic Programming (GP) is particularly well-suited for discovering solutions to problems that humans don't (yet) know how to solve directly, we saw this as an opportunity to create a program that takes advantage of GP to find such missing formulas. Particularly, we aimed to solve the problem of finding a closed-form expression for the famous [Recamán sequence](https://en.wikipedia.org/wiki/Recam%C3%A1n%27s_sequence). 
 
-IntSeq attempts to find a formula that holds for the first $n$ terms in some sequence. Our program also tries to avoid local overfitting by testing the accuracy of the resulting formula on terms $n + 1$ and beyond. As our ultimate goal, we selected the mathematically-significant and aesthetically-appealing Recamán sequence because, while expressions do exist to compute its terms, they are all *recursive*, and not closed-form.
+IntSeq attempts to find a formula that holds for the first <img src="https://render.githubusercontent.com/render/math?math=n"> terms in some sequence. Our program also tries to avoid local overfitting by testing the accuracy of the resulting formula on terms <img src="https://render.githubusercontent.com/render/math?math=n %2B 1"> and beyond. As our ultimate goal, we selected the mathematically-significant and aesthetically-appealing Recamán sequence because, while expressions do exist to compute its terms, they are all *recursive*, and not closed-form.
 
 As a secondary investigation, we ran our program on five test sequences in order to determine whether UMAD with single-point crossover or UMAD without crossover performs better for this particular problem at hand (i.e. finding a formula for some integer sequence).
 
@@ -22,7 +22,7 @@ The first namespace, `seqs`, is a collection of all the sequences we used, as we
 * **Test sequences**
 * **Mathematically-significant sequences**
 
-Test sequences are sequences with already-existing formulas, and include [A037270](https://oeis.org/A037270), [A000292](https://oeis.org/A000292), [A114241](https://oeis.org/A114241), [A168392](https://oeis.org/A168392), as well a simple sequence we created ourselves based on the polynomial $f(n) = n^2 + n + 4, \, n \geq 0$. These test sequences were used to compare the performance of UMAD with single-point crossover and UMAD with no crossover. 
+Test sequences are sequences with already-existing formulas, and include [A037270](https://oeis.org/A037270), [A000292](https://oeis.org/A000292), [A114241](https://oeis.org/A114241), [A168392](https://oeis.org/A168392), as well a simple sequence we created ourselves based on the polynomial <img src="https://render.githubusercontent.com/render/math?math=f(n) = n^2 %2B n %2B 4, \, n \geq 0">. These test sequences were used to compare the performance of UMAD with single-point crossover and UMAD with no crossover. 
 
 On the other hand, our mathematically significant sequence, the [Recamán Sequence](https://oeis.org/A005132), currently has no closed-form formula, which we aimed to discover through Genetic Programming.
 
@@ -40,7 +40,7 @@ Our selection methods include **lexicase** and **tournament** selection. As for 
 
 In addition to these three namespaces, we set up our repository to run on the Condor Computing Cluster for efficiency and convenience. We executed all our runs in the cluster, hoping to find a closed-form expression for the Recamán Sequence, as well as testing whether UMAD with single-point crossover performs better than UMAD with no crossover. 
 
-For the latter endeavor, we investigated both scenarios through 100 independent runs per treatment, for all 5 test sequences (a total of $2 \cdot 100 \cdot 5 = 1000$ runs). We fixed all parameters except the ones of interest in an effort to reduce variability. As such, we tried to pick conventionally-optimal parameters used in previous research:
+For the latter endeavor, we investigated both scenarios through 100 independent runs per treatment, for all 5 test sequences (a total of <img src="https://render.githubusercontent.com/render/math?math=2 \cdot 100 \cdot 5 = 1000"> runs). We fixed all parameters except the ones of interest in an effort to reduce variability. As such, we tried to pick conventionally-optimal parameters used in previous research:
  
  1. population size: **1000**
  2. generation cap: **300**
@@ -62,15 +62,15 @@ As mentioned, we began with the hypothesis that UMAD with single-point crossover
 
 Overall we observed **no significant performance differences** between the two, but some patterns did emerge:
 
-* UMAD with crossover was more successful for more "complex" sequences (e.g. A168392, $p = 0.02$)
-* UMAD with crossover was faster for "simpler" sequences (e.g. simple or A037270, $p \ll 0.001$)
-* UMAD with crossover tends to increase the average size of genomes across the board ($p \ll 0.001$)
+* UMAD with crossover was more successful for more "complex" sequences, e.g. A168392, <img src="https://render.githubusercontent.com/render/math?math=p = 0.02">
+* UMAD with crossover was faster for "simpler" sequences e.g. simple or A037270, <img src="https://render.githubusercontent.com/render/math?math=p \ll 0.001">
+* UMAD with crossover tends to increase the average size of genomes across the board, <img src="https://render.githubusercontent.com/render/math?math=p \ll 0.001">
 
 These results suggest that integer sequences might be better investigated in subtypes (e.g. "simple" and "complex", as determined by some definition).
 
 ### Recamán Sequence
 
-Using the same fixed parameters as for our aforementioned experiment, we ran our program on the Recamán Sequence with both single-point crossover and no crossover. Since the Recamán Sequence can be considered more "complex", we expected better results from UMAD with crossover. Indeed, we did find a significant difference in the average error of the two methods (with $p \ll 0.001$):
+Using the same fixed parameters as for our aforementioned experiment, we ran our program on the Recamán Sequence with both single-point crossover and no crossover. Since the Recamán Sequence can be considered more "complex", we expected better results from UMAD with crossover. Indeed, we did find a significant difference in the average error of the two methods, with <img src="https://render.githubusercontent.com/render/math?math=p \ll 0.001"> as seen below:
 
 * UMAD with crossover: mean error of **18.74** (range 14-20)
 * UMAD without crossover: mean error of **20.54** (range 17-23)

@@ -24,4 +24,18 @@ Our final namespace is `core`; this is where our code for evolution is located. 
 
 ## Results
 
-TODO
+We began with a hypothesis that UMAD with single-point crossover would perform better than UMAD with no crossover. After testing out our hypothesis with 100 independent runs for all 5 test sequences for a total of 1000 runs on the Condor Computing Cluster, here are our results:
+
+**Our program found solutions for 3 out of the 5 test sequences (simple, A037270, A168392).**
+
+Overall we saw **no significant differences between the two**, but UMAD with crossover was more successful for more difficult sequences (e.g. A168392, p = 0.02), and faster for simpler sequences (e.g. simple or A037270, p < 0.001). In addition we noticed that UMAD with crossover tends to increase the average size of genomes across the board (p ≪ 0.001).
+
+### Recamán Sequence
+Using the same parameters as previously described, we ran our program with both single-point crossover and no crossover. As the Recamán sequence is more complex, we expected better results (e.g. average error) from UMAD with crossover. Indeed, we found that (with p ≪ 0.001):
+* UMAD with crossover produces a mean error of 18.74 (range 14-20)
+* UMAD without crossover produces a mean error of 20.54 (range 17-23)
+
+The algorithm did not ultimately find a closed form. More experimentation and code improvement might be necessary for a mathematical breakthrough.
+
+Possible directions for future work include the Implementation, usage, and optimization of more mathematical operators, identification of “sequence subtypes” and running individual analyses, further optimization of parameters, increased number of test runs and data collection and the incorporation of simplification algorithms for the genomes.
+

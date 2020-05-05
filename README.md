@@ -1,6 +1,6 @@
 # IntSeq
 
-A Clojure library designed to find closed-form expressions for integer sequences, using Genetic Programming techniques.
+A Clojure library designed to find closed-form expressions for integer sequences, using Genetic Programming techniques. Created by [Eniola Ajao](https://github.com/eajao1), [Maria-Cristiana Gîrjău](https://github.com/mcgirjau), and [Alexander Lee](https://github.com/alexlee311), and based on the [`propel` framework](https://github.com/lspector/propel) by [Lee Spector](https://github.com/lspector).
 
 ## Usage
 

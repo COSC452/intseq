@@ -2,6 +2,47 @@
 
 A Clojure library designed to find closed-form expressions for integer sequences, using Genetic Programming techniques.
 
+## Usage
+
+To try out IntSeq for yourself, first clone the repository on your own system, and `cd` to it:
+
+```bash
+git clone https://github.com/COSC452/intseq.git
+cd intseq
+```
+
+Once inside the project, you can run the program using `lein run` and providing the following arguments:
+
+* \<int> **population-size**, e.g. 200
+* \<int> **generations**, e.g. 200
+* \<keyword> **seq-id**, one of :simple, :A037270, :A000292, :A114241, :A168392, :A005132
+* \<keyword> **selection-type**, one of :lexicase-selection, :tournament-selection
+* \<int> **tournament-size**, e.g. 7 (will be ignored if using lexicase selection)
+* \<boolean> **crossover?**, true or false
+* \<keyword> **crossover-type**, one of :single-point-crossover, :uniform-crossover, :umad-crossover
+* \<boolean> **mutate?**, true or false
+* \<float> **umad-add-rate**, in range [0, 1.0], e.g. 0.09
+* \<float> **umad-del-rate**, in range [0, 1.0], e.g. 0.1
+* \<boolean> **elitism?**, true or false
+* \<boolean> **report?**, true or false
+* \<boolean> **export-stats?**, true or false
+
+With `report?` set to true, a summary of each generation will be printed to the shell's standard output. This is what the average user would probably be interested in. 
+
+With `export-stats?` set to true, a summary of the entire run will be written to a .csv file in the `data/` subdirectory, and an informative string about the program's outcome will be printed to the shell's standard output. Only use this option if you intend to collect data for analysis. 
+
+Note that setting `export-stats?` to true will automatically set `report?` to false.
+
+### Example Run
+
+An example run would be:
+
+```bash
+lein run 200 200 :simple :lexicase-selection 0 true :single-point-crossover true 0.09 0.1 true true false
+```
+
+If you know what you're doing, feel free to edit the code or play around with it in a REPL. You can also add in more sequences of your choosing by following the structure in `seqs.clj`.
+
 ## Motivation
 
 After browsing the [On-Line Encyclopedia of Integer Sequences (OEIS)](https://oeis.org/), we noticed that many of the sequences listed in their database did not have formulas. Since Genetic Programming (GP) is particularly well-suited for discovering solutions to problems that humans don't (yet) know how to solve directly, we saw this as an opportunity to create a program that takes advantage of GP to find such missing formulas. Particularly, we aimed to solve the problem of finding a closed-form expression for the famous [Recamán sequence](https://en.wikipedia.org/wiki/Recam%C3%A1n%27s_sequence). 
